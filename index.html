@@ -1,0 +1,1952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SME Business OS V1</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#2563eb;
+  --primary-dark:#1d4ed8;
+  --bg:#f5f7fb;
+  --card:#fff;
+  --text:#172033;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --success:#16a34a;
+  --danger:#dc2626;
+  --warning:#d97706;
+  --sidebar:#111827;
+}
+body{
+  font-family:Inter,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+/* LOGIN */
+#loginScreen{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:linear-gradient(135deg,#eff6ff,#f8fafc);
+}
+.login-card{
+  width:100%;
+  max-width:420px;
+  background:#fff;
+  padding:34px;
+  border-radius:20px;
+  box-shadow:0 20px 60px rgba(15,23,42,.12);
+}
+.logo-box{
+  width:58px;
+  height:58px;
+  border-radius:16px;
+  background:var(--primary);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+  font-weight:800;
+  margin-bottom:18px;
+}
+.login-card h1{font-size:27px;margin-bottom:7px}
+.login-card p{color:var(--muted);margin-bottom:25px}
+.form-group{margin-bottom:16px}
+.form-group label{
+  display:block;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:7px;
+}
+input,select,textarea{
+  width:100%;
+  padding:11px 13px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  outline:none;
+  background:#fff;
+}
+input:focus,select:focus,textarea:focus{
+  border-color:var(--primary);
+  box-shadow:0 0 0 3px rgba(37,99,235,.08);
+}
+.btn{
+  border:0;
+  border-radius:10px;
+  padding:11px 16px;
+  font-weight:700;
+}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-dark)}
+.btn-light{background:#eef2f7;color:#374151}
+.btn-danger{background:#fee2e2;color:#b91c1c}
+.btn-success{background:#dcfce7;color:#166534}
+.btn-warning{background:#fef3c7;color:#92400e}
+.full{width:100%}
+.login-hint{
+  margin-top:16px;
+  padding:12px;
+  background:#f8fafc;
+  border-radius:10px;
+  font-size:12px;
+  color:var(--muted);
+}
+/* APP */
+#app{display:none;min-height:100vh}
+.sidebar{
+  position:fixed;
+  left:0;
+  top:0;
+  bottom:0;
+  width:245px;
+  background:var(--sidebar);
+  color:#fff;
+  padding:18px 14px;
+  overflow-y:auto;
+  z-index:50;
+}
+.brand{
+  padding:8px 10px 22px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  margin-bottom:15px;
+}
+.brand-title{font-size:20px;font-weight:800}
+.brand-sub{font-size:11px;color:#9ca3af;margin-top:4px}
+.nav-section{
+  color:#6b7280;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:1px;
+  margin:18px 10px 7px;
+}
+.nav-btn{
+  width:100%;
+  border:0;
+  background:transparent;
+  color:#cbd5e1;
+  padding:11px 12px;
+  text-align:left;
+  border-radius:9px;
+  margin-bottom:3px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:13px;
+}
+.nav-btn:hover,.nav-btn.active{
+  background:#1f2937;
+  color:#fff;
+}
+.main{
+  margin-left:245px;
+  min-height:100vh;
+}
+.topbar{
+  height:68px;
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 25px;
+  position:sticky;
+  top:0;
+  z-index:30;
+}
+.page-title{font-size:20px;font-weight:800}
+.user-area{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.avatar{
+  width:36px;height:36px;border-radius:50%;
+  background:#dbeafe;color:#1d4ed8;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;
+}
+.user-info strong{display:block;font-size:12px}
+.user-info span{font-size:10px;color:var(--muted)}
+.content{padding:25px}
+/* CARDS */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+  margin-bottom:22px;
+}
+.stat-card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:18px;
+}
+.stat-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  color:var(--muted);
+  font-size:12px;
+  font-weight:700;
+}
+.stat-icon{
+  width:35px;height:35px;border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+  background:#eff6ff;
+}
+.stat-value{font-size:25px;font-weight:800;margin-top:13px}
+.stat-note{font-size:11px;color:var(--muted);margin-top:5px}
+.grid-2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+.card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:20px;
+  margin-bottom:18px;
+}
+.card-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:17px;
+}
+.card-title{font-size:16px;font-weight:800}
+.muted{color:var(--muted);font-size:12px}
+/* PAGE */
+.page{display:none}
+.page.active{display:block}
+.page-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:20px;
+}
+.page-header h2{font-size:22px}
+.page-header p{color:var(--muted);font-size:12px;margin-top:4px}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+/* TABLE */
+.table-wrap{overflow-x:auto}
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:650px;
+}
+th,td{
+  padding:12px 10px;
+  border-bottom:1px solid #eef0f3;
+  text-align:left;
+  font-size:12px;
+}
+th{
+  color:#6b7280;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.3px;
+}
+.badge{
+  display:inline-block;
+  padding:5px 8px;
+  border-radius:20px;
+  font-size:10px;
+  font-weight:800;
+}
+.badge-green{background:#dcfce7;color:#166534}
+.badge-red{background:#fee2e2;color:#991b1b}
+.badge-yellow{background:#fef3c7;color:#92400e}
+.badge-blue{background:#dbeafe;color:#1e40af}
+/* DASHBOARD */
+.quick-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+.quick{
+  padding:17px;
+  background:#f8fafc;
+  border:1px solid var(--border);
+  border-radius:12px;
+  text-align:left;
+}
+.quick strong{display:block;font-size:13px;margin-bottom:5px}
+.quick span{font-size:11px;color:var(--muted)}
+/* MODAL */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(15,23,42,.48);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  z-index:100;
+}
+.modal.show{display:flex}
+.modal-box{
+  width:100%;
+  max-width:560px;
+  max-height:90vh;
+  overflow:auto;
+  background:#fff;
+  border-radius:17px;
+  padding:22px;
+}
+.modal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+.close{
+  border:0;background:#f1f5f9;
+  width:34px;height:34px;border-radius:8px;
+}
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:13px;
+}
+.form-grid .full-col{grid-column:1/-1}
+.modal-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:8px;
+  margin-top:20px;
+}
+/* REPORT */
+.report-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+.report-box{
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:17px;
+}
+.report-box span{font-size:11px;color:var(--muted)}
+.report-box strong{display:block;font-size:22px;margin-top:8px}
+/* MOBILE */
+.mobile-menu{
+  display:none;
+  border:0;
+  background:#eef2ff;
+  width:38px;height:38px;
+  border-radius:9px;
+}
+.overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.4);
+  z-index:40;
+}
+@media(max-width:1000px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .quick-grid{grid-template-columns:repeat(2,1fr)}
+  .report-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:760px){
+  .sidebar{
+    transform:translateX(-100%);
+    transition:.25s;
+  }
+  .sidebar.open{transform:translateX(0)}
+  .overlay.show{display:block}
+  .main{margin-left:0}
+  .mobile-menu{display:block}
+  .topbar{padding:0 15px}
+  .content{padding:15px}
+  .grid-2{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr;gap:10px}
+  .stat-card{padding:14px}
+  .stat-value{font-size:20px}
+  .page-header{align-items:flex-start;flex-direction:column}
+  .report-grid{grid-template-columns:1fr}
+  .user-info{display:none}
+}
+@media(max-width:480px){
+  .stats{grid-template-columns:1fr 1fr}
+  .form-grid{grid-template-columns:1fr}
+  .form-grid .full-col{grid-column:auto}
+  .login-card{padding:25px}
+}
+</style>
+</head>
+<body>
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-card">
+    <div class="logo-box">OS</div>
+    <h1>SME Business OS</h1>
+    <p>Business Management System · V1</p>
+    <form id="loginForm">
+      <div class="form-group">
+        <label>Username</label>
+        <input id="loginUsername" type="text" placeholder="Enter username" required>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input id="loginPassword" type="password" placeholder="Enter password" required>
+      </div>
+      <button class="btn btn-primary full" type="submit">Sign In</button>
+    </form>
+    <div class="login-hint">
+      <strong>Demo Owner Account</strong><br>
+      Username: admin<br>
+      Password: 1234
+    </div>
+  </div>
+</div>
+<!-- APP -->
+<div id="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-title">SME Business OS</div>
+      <div class="brand-sub">Business Management · V1.0</div>
+    </div>
+    <div class="nav-section">WORKSPACE</div>
+    <button class="nav-btn active" data-page="dashboard">🏠 Dashboard</button>
+    <button class="nav-btn" data-page="sales">🧾 Sales</button>
+    <button class="nav-btn" data-page="purchases">🛒 Purchases</button>
+    <button class="nav-btn" data-page="products">📦 Products</button>
+    <button class="nav-btn" data-page="inventory">📊 Inventory</button>
+    <div class="nav-section">CUSTOMERS</div>
+    <button class="nav-btn" data-page="customers">👥 Customers</button>
+    <button class="nav-btn" data-page="suppliers">🚚 Suppliers</button>
+    <div class="nav-section">FINANCE</div>
+    <button class="nav-btn" data-page="expenses">💳 Expenses</button>
+    <button class="nav-btn" data-page="reports">📈 Reports</button>
+    <div class="nav-section">SYSTEM</div>
+    <button class="nav-btn" data-page="users">👤 Users</button>
+    <button class="nav-btn" data-page="settings">⚙️ Settings</button>
+    <button class="nav-btn" id="logoutBtn">🚪 Logout</button>
+  </aside>
+  <div class="overlay" id="overlay"></div>
+  <main class="main">
+    <header class="topbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="mobile-menu" id="mobileMenu">☰</button>
+        <div class="page-title" id="pageTitle">Dashboard</div>
+      </div>
+      <div class="user-area">
+        <div class="user-info">
+          <strong id="topUserName">Administrator</strong>
+          <span id="topUserRole">Owner</span>
+        </div>
+        <div class="avatar" id="avatar">A</div>
+      </div>
+    </header>
+    <div class="content">
+      <!-- DASHBOARD -->
+      <section class="page active" id="page-dashboard">
+        <div class="page-header">
+          <div>
+            <h2>Business Dashboard</h2>
+            <p>Overview of your business performance</p>
+          </div>
+          <div class="actions">
+            <button class="btn btn-primary" onclick="openSaleModal()">+ New Sale</button>
+            <button class="btn btn-light" onclick="openPurchaseModal()">+ Purchase</button>
+          </div>
+        </div>
+        <div class="stats">
+          <div class="stat-card">
+            <div class="stat-top">
+              <span>Today's Sales</span>
+              <div class="stat-icon">💰</div>
+            </div>
+            <div class="stat-value" id="dashTodaySales">0</div>
+            <div class="stat-note">MMK</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-top">
+              <span>Monthly Sales</span>
+              <div class="stat-icon">📈</div>
+            </div>
+            <div class="stat-value" id="dashMonthSales">0</div>
+            <div class="stat-note">MMK</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-top">
+              <span>Expenses</span>
+              <div class="stat-icon">💳</div>
+            </div>
+            <div class="stat-value" id="dashExpenses">0</div>
+            <div class="stat-note">MMK</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-top">
+              <span>Net Result</span>
+              <div class="stat-icon">💹</div>
+            </div>
+            <div class="stat-value" id="dashProfit">0</div>
+            <div class="stat-note">Estimated</div>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Quick Actions</div>
+                <div class="muted">Common business operations</div>
+              </div>
+            </div>
+            <div class="quick-grid">
+              <button class="quick" onclick="openSaleModal()">
+                <strong>🧾 New Sale</strong>
+                <span>Create sales invoice</span>
+              </button>
+              <button class="quick" onclick="openPurchaseModal()">
+                <strong>🛒 Purchase</strong>
+                <span>Add stock purchase</span>
+              </button>
+              <button class="quick" onclick="openProductModal()">
+                <strong>📦 Product</strong>
+                <span>Add new product</span>
+              </button>
+              <button class="quick" onclick="openExpenseModal()">
+                <strong>💳 Expense</strong>
+                <span>Record expense</span>
+              </button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Inventory Alert</div>
+                <div class="muted">Products requiring attention</div>
+              </div>
+            </div>
+            <div id="dashboardLowStock"></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Recent Sales</div>
+              <div class="muted">Latest transactions</div>
+            </div>
+            <button class="btn btn-light" onclick="showPage('sales')">View All</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Invoice</th>
+                  <th>Customer</th>
+                  <th>Date</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="recentSalesTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <!-- SALES -->
+      <section class="page" id="page-sales">
+        <div class="page-header">
+          <div>
+            <h2>Sales</h2>
+            <p>Manage sales transactions and invoices</p>
+          </div>
+          <button class="btn btn-primary" onclick="openSaleModal()">+ New Sale</button>
+        </div>
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Invoice</th>
+                  <th>Customer</th>
+                  <th>Date</th>
+                  <th>Items</th>
+                  <th>Total</th>
+                  <th>Payment</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="salesTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <!-- PURCHASES -->
+      <section class="page" id="page-purchases">
+        <div class="page-header">
+          <div>
+            <h2>Purchases</h2>
+            <p>Record purchases and increase stock</p>
+          </div>
+          <button class="btn btn-primary" onclick="openPurchaseModal()">+ New Purchase</button>
+        </div>
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Reference</th>
+                  <th>Supplier</th>
+                  <th>Date</th>
+                  <th>Product</th>
+                  <th>Qty</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody id="purchasesTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <!-- PRODUCTS -->
+      <section class="page" id="page-products">
+        <div class="page-header">
+          <div>
+            <h2>Products</h2>
+            <p>Manage products, pricing and stock</p>
+          </div>
+          <button class="btn btn-primary" onclick="openProductModal()">+ Add Product</button>
+        </div>
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>SKU</th>
+                  <th>Product</th>
+                  <th>Category</th>
+                  <th>Cost</th>
+                  <th>Price</th>
+                  <th>Stock</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="productsTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <!-- INVENTORY -->
+      <section class="page" id="page-inventory">
+        <div class="page-header">
+          <div>
+            <h2>Inventory</h2>
+            <p>Current stock position</p>
+          </div>
+        </div>
+        <div class="stats">
+          <div class="stat-card">
+            <div class="stat-top"><span>Total Products</span></div>
+            <div class="stat-value" id="invProducts">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-top"><span>Total Units</span></div>
+            <div class="stat-value" id="invUnits">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-top"><span>Low Stock</span></div>
+            <div class="stat-value" id="invLow">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-top"><span>Stock Value</span></div>
+            <div class="stat-value" id="invValue">0</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>SKU</th>
+                  <th>Product</th>
+                  <th>Category</th>
+                  <th>Stock</th>
+                  <th>Min Stock</th>
+                  <th>Stock Value</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="inventoryTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <!-- CUSTOMERS -->
+      <section class="page" id="page-customers">
+        <div class="page-header">
+          <div>
+            <h2>Customers</h2>
+            <p>Manage customer relationships</p>
+          </div>
+          <button class="btn btn-primary" onclick="openCustomerModal()">+ Add Customer</button>
+        </div>
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>Address</th>
+                  <th>Total Purchase</th>
+                  <th>Outstanding</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="customersTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <!-- SUPPLIERS -->
+      <section class="page" id="page-suppliers">
+        <div class="page-header">
+          <div>
+            <h2>Suppliers</h2>
+            <p>Manage suppliers and purchases</p>
+          </div>
+          <button class="btn btn-primary" onclick="openSupplierModal()">+ Add Supplier</button>
+        </div>
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Supplier</th>
+                  <th>Phone</th>
+                  <th>Company</th>
+                  <th>Total Purchase</th>
+                  <th>Outstanding</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="suppliersTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <!-- EXPENSES -->
+      <section class="page" id="page-expenses">
+        <div class="page-header">
+          <div>
+            <h2>Expenses</h2>
+            <p>Track business operating expenses</p>
+          </div>
+          <button class="btn btn-primary" onclick="openExpenseModal()">+ Add Expense</button>
+        </div>
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Category</th>
+                  <th>Description</th>
+                  <th>Amount</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="expensesTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <!-- REPORTS -->
+      <section class="page" id="page-reports">
+        <div class="page-header">
+          <div>
+            <h2>Reports</h2>
+            <p>Business performance reports</p>
+          </div>
+          <button class="btn btn-light" onclick="window.print()">Print Report</button>
+        </div>
+        <div class="report-grid">
+          <div class="report-box">
+            <span>Total Sales</span>
+            <strong id="reportSales">0</strong>
+          </div>
+          <div class="report-box">
+            <span>Total Purchases</span>
+            <strong id="reportPurchases">0</strong>
+          </div>
+          <div class="report-box">
+            <span>Total Expenses</span>
+            <strong id="reportExpenses">0</strong>
+          </div>
+          <div class="report-box">
+            <span>Gross Profit</span>
+            <strong id="reportGross">0</strong>
+          </div>
+          <div class="report-box">
+            <span>Net Result</span>
+            <strong id="reportNet">0</strong>
+          </div>
+          <div class="report-box">
+            <span>Outstanding</span>
+            <strong id="reportOutstanding">0</strong>
+          </div>
+        </div>
+        <div class="card" style="margin-top:18px">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Sales Summary</div>
+              <div class="muted">Transaction-level sales data</div>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Invoice</th>
+                  <th>Date</th>
+                  <th>Customer</th>
+                  <th>Total</th>
+                  <th>Payment</th>
+                </tr>
+              </thead>
+              <tbody id="reportSalesTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <!-- USERS -->
+      <section class="page" id="page-users">
+        <div class="page-header">
+          <div>
+            <h2>Users & Permissions</h2>
+            <p>Manage local users and access levels</p>
+          </div>
+          <button class="btn btn-primary" onclick="openUserModal()">+ Add User</button>
+        </div>
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>User</th>
+                  <th>Name</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="usersTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <!-- SETTINGS -->
+      <section class="page" id="page-settings">
+        <div class="page-header">
+          <div>
+            <h2>Settings</h2>
+            <p>Business and local system settings</p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Business Information</div>
+            </div>
+            <div class="form-group">
+              <label>Business Name</label>
+              <input id="businessName" placeholder="Your Business Name">
+            </div>
+            <div class="form-group">
+              <label>Phone</label>
+              <input id="businessPhone" placeholder="Business phone">
+            </div>
+            <div class="form-group">
+              <label>Address</label>
+              <textarea id="businessAddress" rows="3"></textarea>
+            </div>
+            <button class="btn btn-primary" onclick="saveSettings()">Save Settings</button>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Data Management</div>
+            </div>
+            <p class="muted" style="margin-bottom:15px">
+              V1 uses local browser storage. Backup your business data regularly.
+            </p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <button class="btn btn-success" onclick="backupData()">⬇ Backup Data</button>
+              <button class="btn btn-light" onclick="document.getElementById('restoreFile').click()">⬆ Restore Data</button>
+              <input type="file" id="restoreFile" accept=".json" class="hidden">
+              <button class="btn btn-danger" onclick="resetAllData()">Reset All Data</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 id="modalTitle">Modal</h3>
+      <button class="close" onclick="closeModal()">✕</button>
+    </div>
+    <div id="modalBody"></div>
+  </div>
+</div>
+<script>
+/* =========================================================
+   SME BUSINESS OS V1
+   LOCAL-FIRST DATABASE
+========================================================= */
+const DB_KEY = "SME_BUSINESS_OS_V1";
+let db = {
+  settings:{
+    businessName:"My SME Business",
+    phone:"",
+    address:""
+  },
+  currentUser:null,
+  users:[
+    {
+      id:"U001",
+      username:"admin",
+      password:"1234",
+      name:"Administrator",
+      role:"Owner",
+      active:true
+    }
+  ],
+  products:[],
+  sales:[],
+  purchases:[],
+  customers:[],
+  suppliers:[],
+  expenses:[]
+};
+function loadDB(){
+  const saved = localStorage.getItem(DB_KEY);
+  if(saved){
+    try{
+      db = JSON.parse(saved);
+    }catch(e){
+      console.error("Database error",e);
+    }
+  }
+}
+function saveDB(){
+  localStorage.setItem(DB_KEY,JSON.stringify(db));
+}
+function money(value){
+  return Number(value||0).toLocaleString("en-US");
+}
+function today(){
+  return new Date().toISOString().slice(0,10);
+}
+function monthKey(){
+  return new Date().toISOString().slice(0,7);
+}
+function uid(prefix){
+  return prefix + Date.now() + Math.floor(Math.random()*1000);
+}
+/* =========================================================
+   LOGIN
+========================================================= */
+function initLogin(){
+  document.getElementById("loginForm").addEventListener("submit",function(e){
+    e.preventDefault();
+    const username = document.getElementById("loginUsername").value.trim();
+    const password = document.getElementById("loginPassword").value;
+    const user = db.users.find(
+      u => u.username === username &&
+           u.password === password &&
+           u.active
+    );
+    if(!user){
+      alert("Invalid username or password.");
+      return;
+    }
+    db.currentUser = {
+      id:user.id,
+      username:user.username,
+      name:user.name,
+      role:user.role
+    };
+    saveDB();
+    showApp();
+  });
+}
+function showApp(){
+  document.getElementById("loginScreen").style.display="none";
+  document.getElementById("app").style.display="block";
+  updateUserUI();
+  loadSettingsUI();
+  renderAll();
+}
+function logout(){
+  db.currentUser=null;
+  saveDB();
+  document.getElementById("app").style.display="none";
+  document.getElementById("loginScreen").style.display="flex";
+  document.getElementById("loginUsername").value="";
+  document.getElementById("loginPassword").value="";
+}
+function updateUserUI(){
+  if(!db.currentUser)return;
+  document.getElementById("topUserName").textContent=db.currentUser.name;
+  document.getElementById("topUserRole").textContent=db.currentUser.role;
+  const first=(db.currentUser.name||"A").charAt(0).toUpperCase();
+  document.getElementById("avatar").textContent=first;
+}
+/* =========================================================
+   NAVIGATION
+========================================================= */
+const pageNames={
+  dashboard:"Dashboard",
+  sales:"Sales",
+  purchases:"Purchases",
+  products:"Products",
+  inventory:"Inventory",
+  customers:"Customers",
+  suppliers:"Suppliers",
+  expenses:"Expenses",
+  reports:"Reports",
+  users:"Users & Permissions",
+  settings:"Settings"
+};
+function showPage(page){
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("active");
+  });
+  const target=document.getElementById("page-"+page);
+  if(target)target.classList.add("active");
+  document.querySelectorAll(".nav-btn[data-page]").forEach(btn=>{
+    btn.classList.toggle("active",btn.dataset.page===page);
+  });
+  document.getElementById("pageTitle").textContent=pageNames[page]||"Dashboard";
+  closeMobileMenu();
+  renderAll();
+}
+function initNavigation(){
+  document.querySelectorAll(".nav-btn[data-page]").forEach(btn=>{
+    btn.addEventListener("click",()=>showPage(btn.dataset.page));
+  });
+  document.getElementById("logoutBtn").addEventListener("click",logout);
+  document.getElementById("mobileMenu").addEventListener("click",()=>{
+    document.getElementById("sidebar").classList.add("open");
+    document.getElementById("overlay").classList.add("show");
+  });
+  document.getElementById("overlay").addEventListener("click",closeMobileMenu);
+}
+function closeMobileMenu(){
+  document.getElementById("sidebar").classList.remove("open");
+  document.getElementById("overlay").classList.remove("show");
+}
+/* =========================================================
+   MODAL
+========================================================= */
+function openModal(title,html){
+  document.getElementById("modalTitle").textContent=title;
+  document.getElementById("modalBody").innerHTML=html;
+  document.getElementById("modal").classList.add("show");
+}
+function closeModal(){
+  document.getElementById("modal").classList.remove("show");
+}
+/* =========================================================
+   DASHBOARD
+========================================================= */
+function calculateSales(){
+  return db.sales.reduce((sum,s)=>sum+Number(s.total||0),0);
+}
+function calculatePurchases(){
+  return db.purchases.reduce((sum,p)=>sum+Number(p.total||0),0);
+}
+function calculateExpenses(){
+  return db.expenses.reduce((sum,e)=>sum+Number(e.amount||0),0);
+}
+function calculateGrossProfit(){
+  return db.sales.reduce((sum,s)=>{
+    if(s.items && s.items.length){
+      return sum+s.items.reduce((itemSum,item)=>{
+        const product=db.products.find(p=>p.id===item.productId);
+        const cost=product?Number(product.cost):0;
+        return itemSum+(Number(item.price)-cost)*Number(item.qty);
+      },0);
+    }
+    return sum;
+  },0);
+}
+function renderDashboard(){
+  const salesToday=db.sales
+    .filter(s=>s.date===today())
+    .reduce((sum,s)=>sum+Number(s.total||0),0);
+  const salesMonth=db.sales
+    .filter(s=>s.date.slice(0,7)===monthKey())
+    .reduce((sum,s)=>sum+Number(s.total||0),0);
+  const expensesMonth=db.expenses
+    .filter(e=>e.date.slice(0,7)===monthKey())
+    .reduce((sum,e)=>sum+Number(e.amount||0),0);
+  const gross=calculateGrossProfit();
+  const net=gross-calculateExpenses();
+  document.getElementById("dashTodaySales").textContent=money(salesToday);
+  document.getElementById("dashMonthSales").textContent=money(salesMonth);
+  document.getElementById("dashExpenses").textContent=money(expensesMonth);
+  document.getElementById("dashProfit").textContent=money(net);
+  const low=db.products.filter(p=>Number(p.stock)<=Number(p.minStock));
+  document.getElementById("dashboardLowStock").innerHTML=
+    low.length
+    ? low.slice(0,6).map(p=>`
+      <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #eee">
+        <span style="font-size:12px">${escapeHTML(p.name)}</span>
+        <span class="badge badge-red">${p.stock} left</span>
+      </div>
+    `).join("")
+    : `<div style="padding:15px 0;color:#16a34a;font-size:12px">✓ No low-stock products</div>`;
+  const recent=[...db.sales].reverse().slice(0,6);
+  document.getElementById("recentSalesTable").innerHTML=
+    recent.length
+    ? recent.map(s=>`
+      <tr>
+        <td><strong>${escapeHTML(s.invoice)}</strong></td>
+        <td>${escapeHTML(s.customerName||"Walk-in Customer")}</td>
+        <td>${s.date}</td>
+        <td>${money(s.total)} MMK</td>
+        <td><span class="badge badge-green">Paid</span></td>
+      </tr>
+    `).join("")
+    : emptyRow(5,"No sales recorded yet");
+}
+/* =========================================================
+   PRODUCTS
+========================================================= */
+function openProductModal(){
+  openModal("Add Product",`
+    <form id="productForm">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>SKU</label>
+          <input id="pSku" required placeholder="SKU-001">
+        </div>
+        <div class="form-group">
+          <label>Product Name</label>
+          <input id="pName" required placeholder="Product name">
+        </div>
+        <div class="form-group">
+          <label>Category</label>
+          <input id="pCategory" placeholder="Category">
+        </div>
+        <div class="form-group">
+          <label>Unit</label>
+          <select id="pUnit">
+            <option>pcs</option>
+            <option>box</option>
+            <option>pack</option>
+            <option>kg</option>
+            <option>liter</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Cost Price</label>
+          <input id="pCost" type="number" min="0" required>
+        </div>
+        <div class="form-group">
+          <label>Selling Price</label>
+          <input id="pPrice" type="number" min="0" required>
+        </div>
+        <div class="form-group">
+          <label>Opening Stock</label>
+          <input id="pStock" type="number" min="0" value="0">
+        </div>
+        <div class="form-group">
+          <label>Minimum Stock</label>
+          <input id="pMin" type="number" min="0" value="5">
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-light" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-primary">Save Product</button>
+      </div>
+    </form>
+  `);
+  document.getElementById("productForm").onsubmit=function(e){
+    e.preventDefault();
+    db.products.push({
+      id:uid("P"),
+      sku:document.getElementById("pSku").value.trim(),
+      name:document.getElementById("pName").value.trim(),
+      category:document.getElementById("pCategory").value.trim(),
+      unit:document.getElementById("pUnit").value,
+      cost:Number(document.getElementById("pCost").value),
+      price:Number(document.getElementById("pPrice").value),
+      stock:Number(document.getElementById("pStock").value),
+      minStock:Number(document.getElementById("pMin").value)
+    });
+    saveDB();
+    closeModal();
+    renderAll();
+  };
+}
+function deleteProduct(id){
+  if(!canDelete()){
+    alert("Only Owner can delete data.");
+    return;
+  }
+  if(!confirm("Delete this product?"))return;
+  db.products=db.products.filter(p=>p.id!==id);
+  saveDB();
+  renderAll();
+}
+function renderProducts(){
+  document.getElementById("productsTable").innerHTML=
+    db.products.length
+    ? db.products.map(p=>{
+      const low=Number(p.stock)<=Number(p.minStock);
+      return `
+      <tr>
+        <td>${escapeHTML(p.sku)}</td>
+        <td><strong>${escapeHTML(p.name)}</strong></td>
+        <td>${escapeHTML(p.category||"-")}</td>
+        <td>${money(p.cost)}</td>
+        <td>${money(p.price)}</td>
+        <td>${p.stock} ${p.unit}</td>
+        <td>
+          <span class="badge ${low?"badge-red":"badge-green"}">
+            ${low?"Low Stock":"In Stock"}
+          </span>
+        </td>
+        <td>
+          <button class="btn btn-danger" style="padding:6px 9px" onclick="deleteProduct('${p.id}')">Delete</button>
+        </td>
+      </tr>`;
+    }).join("")
+    : emptyRow(8,"No products yet");
+}
+/* =========================================================
+   INVENTORY
+========================================================= */
+function renderInventory(){
+  const units=db.products.reduce((sum,p)=>sum+Number(p.stock||0),0);
+  const low=db.products.filter(p=>Number(p.stock)<=Number(p.minStock)).length;
+  const value=db.products.reduce((sum,p)=>sum+(Number(p.stock)*Number(p.cost)),0);
+  document.getElementById("invProducts").textContent=db.products.length;
+  document.getElementById("invUnits").textContent=units;
+  document.getElementById("invLow").textContent=low;
+  document.getElementById("invValue").textContent=money(value);
+  document.getElementById("inventoryTable").innerHTML=
+    db.products.length
+    ? db.products.map(p=>{
+      const isLow=Number(p.stock)<=Number(p.minStock);
+      return `
+      <tr>
+        <td>${escapeHTML(p.sku)}</td>
+        <td>${escapeHTML(p.name)}</td>
+        <td>${escapeHTML(p.category||"-")}</td>
+        <td><strong>${p.stock}</strong></td>
+        <td>${p.minStock}</td>
+        <td>${money(p.stock*p.cost)} MMK</td>
+        <td>
+          <span class="badge ${isLow?"badge-red":"badge-green"}">
+            ${isLow?"Low":"OK"}
+          </span>
+        </td>
+      </tr>`;
+    }).join("")
+    : emptyRow(7,"No inventory data");
+}
+/* =========================================================
+   SALES
+========================================================= */
+function openSaleModal(){
+  if(!db.products.length){
+    alert("Please add products first.");
+    showPage("products");
+    return;
+  }
+  const options=db.products.map(p=>
+    `<option value="${p.id}">${escapeHTML(p.name)} — ${money(p.price)} MMK — Stock ${p.stock}</option>`
+  ).join("");
+  const customers=`<option value="">Walk-in Customer</option>`+
+    db.customers.map(c=>`<option value="${c.id}">${escapeHTML(c.name)}</option>`).join("");
+  openModal("New Sale",`
+    <form id="saleForm">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Customer</label>
+          <select id="saleCustomer">${customers}</select>
+        </div>
+        <div class="form-group">
+          <label>Product</label>
+          <select id="saleProduct">${options}</select>
+        </div>
+        <div class="form-group">
+          <label>Quantity</label>
+          <input id="saleQty" type="number" min="1" value="1" required>
+        </div>
+        <div class="form-group">
+          <label>Discount</label>
+          <input id="saleDiscount" type="number" min="0" value="0">
+        </div>
+        <div class="form-group">
+          <label>Payment</label>
+          <select id="salePayment">
+            <option>Cash</option>
+            <option>Credit</option>
+            <option>KBZ Pay</option>
+            <option>Wave Pay</option>
+            <option>Bank</option>
+          </select>
+        </div>
+      </div>
+      <div style="background:#f8fafc;padding:15px;border-radius:10px;margin-top:10px">
+        <div style="display:flex;justify-content:space-between">
+          <span>Estimated Total</span>
+          <strong id="salePreview">0 MMK</strong>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-light" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-primary">Complete Sale</button>
+      </div>
+    </form>
+  `);
+  function updatePreview(){
+    const p=db.products.find(x=>x.id===document.getElementById("saleProduct").value);
+    if(!p)return;
+    const qty=Number(document.getElementById("saleQty").value||0);
+    const discount=Number(document.getElementById("saleDiscount").value||0);
+    const total=(p.price*qty)-discount;
+    document.getElementById("salePreview").textContent=money(Math.max(0,total))+" MMK";
+  }
+  document.getElementById("saleProduct").onchange=updatePreview;
+  document.getElementById("saleQty").oninput=updatePreview;
+  document.getElementById("saleDiscount").oninput=updatePreview;
+  updatePreview();
+  document.getElementById("saleForm").onsubmit=function(e){
+    e.preventDefault();
+    const product=db.products.find(
+      p=>p.id===document.getElementById("saleProduct").value
+    );
+    const qty=Number(document.getElementById("saleQty").value);
+    const discount=Number(document.getElementById("saleDiscount").value||0);
+    if(!product)return;
+    if(qty>Number(product.stock)){
+      alert("Not enough stock.");
+      return;
+    }
+    const customerId=document.getElementById("saleCustomer").value;
+    const customer=db.customers.find(c=>c.id===customerId);
+    const total=Math.max(0,(product.price*qty)-discount);
+    const sale={
+      id:uid("S"),
+      invoice:"INV-"+Date.now(),
+      date:today(),
+      customerId:customerId,
+      customerName:customer?customer.name:"Walk-in Customer",
+      payment:document.getElementById("salePayment").value,
+      total:total,
+      items:[
+        {
+          productId:product.id,
+          name:product.name,
+          qty:qty,
+          price:product.price
+        }
+      ]
+    };
+    product.stock-=qty;
+    db.sales.push(sale);
+    if(customer){
+      customer.totalPurchase=Number(customer.totalPurchase||0)+total;
+      if(sale.payment==="Credit"){
+        customer.outstanding=Number(customer.outstanding||0)+total;
+      }
+    }
+    saveDB();
+    closeModal();
+    renderAll();
+  };
+}
+function renderSales(){
+  document.getElementById("salesTable").innerHTML=
+    db.sales.length
+    ? [...db.sales].reverse().map(s=>`
+      <tr>
+        <td><strong>${escapeHTML(s.invoice)}</strong></td>
+        <td>${escapeHTML(s.customerName)}</td>
+        <td>${s.date}</td>
+        <td>${s.items?.length||0}</td>
+        <td>${money(s.total)} MMK</td>
+        <td><span class="badge badge-green">${escapeHTML(s.payment)}</span></td>
+        <td>
+          <button class="btn btn-light" style="padding:6px 9px" onclick="viewSale('${s.id}')">View</button>
+        </td>
+      </tr>
+    `).join("")
+    : emptyRow(7,"No sales recorded");
+}
+function viewSale(id){
+  const s=db.sales.find(x=>x.id===id);
+  if(!s)return;
+  openModal("Sales Invoice",`
+    <div style="margin-bottom:18px">
+      <strong>${escapeHTML(s.invoice)}</strong><br>
+      <span class="muted">${s.date}</span>
+    </div>
+    <div style="padding:14px;background:#f8fafc;border-radius:10px;margin-bottom:15px">
+      Customer: <strong>${escapeHTML(s.customerName)}</strong><br>
+      Payment: <strong>${escapeHTML(s.payment)}</strong>
+    </div>
+    ${s.items.map(i=>`
+      <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #eee">
+        <span>${escapeHTML(i.name)} × ${i.qty}</span>
+        <strong>${money(i.price*i.qty)}</strong>
+      </div>
+    `).join("")}
+    <div style="display:flex;justify-content:space-between;margin-top:18px;font-size:18px">
+      <strong>Total</strong>
+      <strong>${money(s.total)} MMK</strong>
+    </div>
+  `);
+}
+/* =========================================================
+   PURCHASES
+========================================================= */
+function openPurchaseModal(){
+  if(!db.products.length){
+    alert("Please add products first.");
+    showPage("products");
+    return;
+  }
+  const options=db.products.map(p=>
+    `<option value="${p.id}">${escapeHTML(p.name)}</option>`
+  ).join("");
+  const suppliers=`<option value="">Select Supplier</option>`+
+    db.suppliers.map(s=>`<option value="${s.id}">${escapeHTML(s.name)}</option>`).join("");
+  openModal("New Purchase",`
+    <form id="purchaseForm">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Supplier</label>
+          <select id="purchaseSupplier">${suppliers}</select>
+        </div>
+        <div class="form-group">
+          <label>Product</label>
+          <select id="purchaseProduct">${options}</select>
+        </div>
+        <div class="form-group">
+          <label>Quantity</label>
+          <input id="purchaseQty" type="number" min="1" value="1" required>
+        </div>
+        <div class="form-group">
+          <label>Unit Cost</label>
+          <input id="purchaseCost" type="number" min="0" required>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-light" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-primary">Save Purchase</button>
+      </div>
+    </form>
+  `);
+  const first=db.products[0];
+  document.getElementById("purchaseCost").value=first.cost;
+  document.getElementById("purchaseProduct").onchange=function(){
+    const p=db.products.find(x=>x.id===this.value);
+    if(p){
+      document.getElementById("purchaseCost").value=p.cost;
+    }
+  };
+  document.getElementById("purchaseForm").onsubmit=function(e){
+    e.preventDefault();
+    const product=db.products.find(
+      p=>p.id===document.getElementById("purchaseProduct").value
+    );
+    const supplierId=document.getElementById("purchaseSupplier").value;
+    const supplier=db.suppliers.find(s=>s.id===supplierId);
+    const qty=Number(document.getElementById("purchaseQty").value);
+    const cost=Number(document.getElementById("purchaseCost").value);
+    if(!product)return;
+    product.stock+=qty;
+    const purchase={
+      id:uid("PUR"),
+      reference:"PUR-"+Date.now(),
+      date:today(),
+      supplierId:supplierId,
+      supplierName:supplier?supplier.name:"Unknown Supplier",
+      productId:product.id,
+      productName:product.name,
+      qty:qty,
+      cost:cost,
+      total:qty*cost
+    };
+    db.purchases.push(purchase);
+    if(supplier){
+      supplier.totalPurchase=Number(supplier.totalPurchase||0)+purchase.total;
+    }
+    saveDB();
+    closeModal();
+    renderAll();
+  };
+}
+function renderPurchases(){
+  document.getElementById("purchasesTable").innerHTML=
+    db.purchases.length
+    ? [...db.purchases].reverse().map(p=>`
+      <tr>
+        <td><strong>${escapeHTML(p.reference)}</strong></td>
+        <td>${escapeHTML(p.supplierName)}</td>
+        <td>${p.date}</td>
+        <td>${escapeHTML(p.productName)}</td>
+        <td>${p.qty}</td>
+        <td>${money(p.total)} MMK</td>
+      </tr>
+    `).join("")
+    : emptyRow(6,"No purchases recorded");
+}
+/* =========================================================
+   CUSTOMERS
+========================================================= */
+function openCustomerModal(){
+  openModal("Add Customer",`
+    <form id="customerForm">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Customer Name</label>
+          <input id="cName" required>
+        </div>
+        <div class="form-group">
+          <label>Phone</label>
+          <input id="cPhone">
+        </div>
+        <div class="form-group full-col">
+          <label>Address</label>
+          <textarea id="cAddress" rows="3"></textarea>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-light" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-primary">Save Customer</button>
+      </div>
+    </form>
+  `);
+  document.getElementById("customerForm").onsubmit=function(e){
+    e.preventDefault();
+    db.customers.push({
+      id:uid("C"),
+      name:document.getElementById("cName").value.trim(),
+      phone:document.getElementById("cPhone").value.trim(),
+      address:document.getElementById("cAddress").value.trim(),
+      totalPurchase:0,
+      outstanding:0
+    });
+    saveDB();
+    closeModal();
+    renderAll();
+  };
+}
+function deleteCustomer(id){
+  if(!confirm("Delete customer?"))return;
+  db.customers=db.customers.filter(c=>c.id!==id);
+  saveDB();
+  renderAll();
+}
+function renderCustomers(){
+  document.getElementById("customersTable").innerHTML=
+    db.customers.length
+    ? db.customers.map(c=>`
+      <tr>
+        <td><strong>${escapeHTML(c.name)}</strong></td>
+        <td>${escapeHTML(c.phone||"-")}</td>
+        <td>${escapeHTML(c.address||"-")}</td>
+        <td>${money(c.totalPurchase)} MMK</td>
+        <td>${money(c.outstanding)} MMK</td>
+        <td>
+          <button class="btn btn-danger" style="padding:6px 9px" onclick="deleteCustomer('${c.id}')">Delete</button>
+        </td>
+      </tr>
+    `).join("")
+    : emptyRow(6,"No customers yet");
+}
+/* =========================================================
+   SUPPLIERS
+========================================================= */
+function openSupplierModal(){
+  openModal("Add Supplier",`
+    <form id="supplierForm">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Supplier Name</label>
+          <input id="sName" required>
+        </div>
+        <div class="form-group">
+          <label>Phone</label>
+          <input id="sPhone">
+        </div>
+        <div class="form-group full-col">
+          <label>Company</label>
+          <input id="sCompany">
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-light" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-primary">Save Supplier</button>
+      </div>
+    </form>
+  `);
+  document.getElementById("supplierForm").onsubmit=function(e){
+    e.preventDefault();
+    db.suppliers.push({
+      id:uid("SUP"),
+      name:document.getElementById("sName").value.trim(),
+      phone:document.getElementById("sPhone").value.trim(),
+      company:document.getElementById("sCompany").value.trim(),
+      totalPurchase:0,
+      outstanding:0
+    });
+    saveDB();
+    closeModal();
+    renderAll();
+  };
+}
+function deleteSupplier(id){
+  if(!confirm("Delete supplier?"))return;
+  db.suppliers=db.suppliers.filter(s=>s.id!==id);
+  saveDB();
+  renderAll();
+}
+function renderSuppliers(){
+  document.getElementById("suppliersTable").innerHTML=
+    db.suppliers.length
+    ? db.suppliers.map(s=>`
+      <tr>
+        <td><strong>${escapeHTML(s.name)}</strong></td>
+        <td>${escapeHTML(s.phone||"-")}</td>
+        <td>${escapeHTML(s.company||"-")}</td>
+        <td>${money(s.totalPurchase)} MMK</td>
+        <td>${money(s.outstanding)} MMK</td>
+        <td>
+          <button class="btn btn-danger" style="padding:6px 9px" onclick="deleteSupplier('${s.id}')">Delete</button>
+        </td>
+      </tr>
+    `).join("")
+    : emptyRow(6,"No suppliers yet");
+}
+/* =========================================================
+   EXPENSES
+========================================================= */
+function openExpenseModal(){
+  openModal("Add Expense",`
+    <form id="expenseForm">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Category</label>
+          <select id="eCategory">
+            <option>Rent</option>
+            <option>Salary</option>
+            <option>Transport</option>
+            <option>Utilities</option>
+            <option>Marketing</option>
+            <option>Office</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Amount</label>
+          <input id="eAmount" type="number" min="0" required>
+        </div>
+        <div class="form-group full-col">
+          <label>Description</label>
+          <textarea id="eDescription" rows="3"></textarea>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-light" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-primary">Save Expense</button>
+      </div>
+    </form>
+  `);
+  document.getElementById("expenseForm").onsubmit=function(e){
+    e.preventDefault();
+    db.expenses.push({
+      id:uid("E"),
+      date:today(),
+      category:document.getElementById("eCategory").value,
+      description:document.getElementById("eDescription").value.trim(),
+      amount:Number(document.getElementById("eAmount").value)
+    });
+    saveDB();
+    closeModal();
+    renderAll();
+  };
+}
+function deleteExpense(id){
+  if(!confirm("Delete expense?"))return;
+  db.expenses=db.expenses.filter(e=>e.id!==id);
+  saveDB();
+  renderAll();
+}
+function renderExpenses(){
+  document.getElementById("expensesTable").innerHTML=
+    db.expenses.length
+    ? [...db.expenses].reverse().map(e=>`
+      <tr>
+        <td>${e.date}</td>
+        <td><span class="badge badge-yellow">${escapeHTML(e.category)}</span></td>
+        <td>${escapeHTML(e.description||"-")}</td>
+        <td><strong>${money(e.amount)} MMK</strong></td>
+        <td>
+          <button class="btn btn-danger" style="padding:6px 9px" onclick="deleteExpense('${e.id}')">Delete</button>
+        </td>
+      </tr>
+    `).join("")
+    : emptyRow(5,"No expenses recorded");
+}
+/* =========================================================
+   REPORTS
+========================================================= */
+function renderReports(){
+  const sales=calculateSales();
+  const purchases=calculatePurchases();
+  const expenses=calculateExpenses();
+  const gross=calculateGrossProfit();
+  const net=gross-expenses;
+  const outstanding=
+    db.customers.reduce((sum,c)=>sum+Number(c.outstanding||0),0);
+  document.getElementById("reportSales").textContent=money(sales)+" MMK";
+  document.getElementById("reportPurchases").textContent=money(purchases)+" MMK";
+  document.getElementById("reportExpenses").textContent=money(expenses)+" MMK";
+  document.getElementById("reportGross").textContent=money(gross)+" MMK";
+  document.getElementById("reportNet").textContent=money(net)+" MMK";
+  document.getElementById("reportOutstanding").textContent=money(outstanding)+" MMK";
+  document.getElementById("reportSalesTable").innerHTML=
+    db.sales.length
+    ? [...db.sales].reverse().map(s=>`
+      <tr>
+        <td>${escapeHTML(s.invoice)}</td>
+        <td>${s.date}</td>
+        <td>${escapeHTML(s.customerName)}</td>
+        <td>${money(s.total)} MMK</td>
+        <td>${escapeHTML(s.payment)}</td>
+      </tr>
+    `).join("")
+    : emptyRow(5,"No sales data");
+}
+/* =========================================================
+   USERS
+========================================================= */
+function canDelete(){
+  return db.currentUser && db.currentUser.role==="Owner";
+}
+function openUserModal(){
+  if(!canDelete()){
+    alert("Only Owner can manage users.");
+    return;
+  }
+  openModal("Add User",`
+    <form id="userForm">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Username</label>
+          <input id="uUsername" required>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input id="uPassword" type="password" required>
+        </div>
+        <div class="form-group">
+          <label>Name</label>
+          <input id="uName" required>
+        </div>
+        <div class="form-group">
+          <label>Role</label>
+          <select id="uRole">
+            <option>Admin</option>
+            <option>Manager</option>
+            <option>Staff</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-light" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-primary">Create User</button>
+      </div>
+    </form>
+  `);
+  document.getElementById("userForm").onsubmit=function(e){
+    e.preventDefault();
+    const username=document.getElementById("uUsername").value.trim();
+    if(db.users.some(u=>u.username===username)){
+      alert("Username already exists.");
+      return;
+    }
+    db.users.push({
+      id:uid("U"),
+      username:username,
+      password:document.getElementById("uPassword").value,
+      name:document.getElementById("uName").value.trim(),
+      role:document.getElementById("uRole").value,
+      active:true
+    });
+    saveDB();
+    closeModal();
+    renderAll();
+  };
+}
+function deleteUser(id){
+  if(!canDelete()){
+    alert("Only Owner can delete users.");
+    return;
+  }
+  if(id===db.currentUser.id){
+    alert("You cannot delete the current user.");
+    return;
+  }
+  if(!confirm("Delete user?"))return;
+  db.users=db.users.filter(u=>u.id!==id);
+  saveDB();
+  renderAll();
+}
+function renderUsers(){
+  document.getElementById("usersTable").innerHTML=
+    db.users.map(u=>`
+      <tr>
+        <td><strong>${escapeHTML(u.username)}</strong></td>
+        <td>${escapeHTML(u.name)}</td>
+        <td><span class="badge badge-blue">${escapeHTML(u.role)}</span></td>
+        <td><span class="badge ${u.active?"badge-green":"badge-red"}">${u.active?"Active":"Disabled"}</span></td>
+        <td>
+          ${u.role!=="Owner"
+            ? `<button class="btn btn-danger" style="padding:6px 9px" onclick="deleteUser('${u.id}')">Delete</button>`
+            : `<span class="muted">Owner</span>`
+          }
+        </td>
+      </tr>
+    `).join("");
+}
+/* =========================================================
+   SETTINGS
+========================================================= */
+function loadSettingsUI(){
+  document.getElementById("businessName").value=db.settings.businessName||"";
+  document.getElementById("businessPhone").value=db.settings.phone||"";
+  document.getElementById("businessAddress").value=db.settings.address||"";
+}
+function saveSettings(){
+  db.settings.businessName=document.getElementById("businessName").value.trim();
+  db.settings.phone=document.getElementById("businessPhone").value.trim();
+  db.settings.address=document.getElementById("businessAddress").value.trim();
+  saveDB();
+  alert("Settings saved.");
+}
+/* =========================================================
+   BACKUP / RESTORE
+========================================================= */
+function backupData(){
+  const data=JSON.stringify(db,null,2);
+  const blob=new Blob([data],{type:"application/json"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;
+  a.download="sme-business-os-backup-"+today()+".json";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+document.getElementById("restoreFile").addEventListener("change",function(e){
+  const file=e.target.files[0];
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=function(){
+    try{
+      const imported=JSON.parse(reader.result);
+      if(!imported.users || !imported.products){
+        throw new Error("Invalid backup");
+      }
+      if(!confirm("Restore this backup? Current local data will be replaced.")){
+        return;
+      }
+      db=imported;
+      saveDB();
+      if(db.currentUser){
+        showApp();
+      }else{
+        location.reload();
+      }
+    }catch(err){
+      alert("Invalid backup file.");
+    }
+  };
+  reader.readAsText(file);
+});
+function resetAllData(){
+  if(!canDelete()){
+    alert("Only Owner can reset data.");
+    return;
+  }
+  const confirmText=prompt(
+    "Type RESET to permanently clear all business data."
+  );
+  if(confirmText!=="RESET")return;
+  localStorage.removeItem(DB_KEY);
+  location.reload();
+}
+/* =========================================================
+   HELPERS
+========================================================= */
+function emptyRow(cols,text){
+  return `
+    <tr>
+      <td colspan="${cols}" style="text-align:center;padding:35px;color:#9ca3af">
+        ${text}
+      </td>
+    </tr>
+  `;
+}
+function escapeHTML(str){
+  return String(str??"")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+/* =========================================================
+   RENDER ALL
+========================================================= */
+function renderAll(){
+  renderDashboard();
+  renderProducts();
+  renderInventory();
+  renderSales();
+  renderPurchases();
+  renderCustomers();
+  renderSuppliers();
+  renderExpenses();
+  renderReports();
+  renderUsers();
+  loadSettingsUI();
+}
+/* =========================================================
+   START
+========================================================= */
+loadDB();
+initLogin();
+initNavigation();
+if(db.currentUser){
+  showApp();
+}
+</script>
+</body>
+</html>
