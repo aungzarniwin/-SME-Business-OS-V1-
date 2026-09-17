@@ -24,7 +24,9 @@
   --radius:16px;
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
@@ -33,7 +35,10 @@ body{
   color:var(--text);
 }
 
-button,input,select,textarea{
+button,
+input,
+select,
+textarea{
   font:inherit;
 }
 
@@ -45,7 +50,10 @@ button{
   display:none!important;
 }
 
-/* AUTH */
+/* =========================
+   AUTH
+========================= */
+
 #authScreen{
   min-height:100vh;
   display:flex;
@@ -108,6 +116,7 @@ button{
   color:var(--muted);
   margin:0 0 22px;
   font-size:14px;
+  line-height:1.5;
 }
 
 .field{
@@ -172,6 +181,12 @@ button{
   gap:10px;
 }
 
+.btn-google:disabled{
+  opacity:.65;
+  cursor:not-allowed;
+  transform:none;
+}
+
 .google-icon{
   width:20px;
   height:20px;
@@ -222,9 +237,13 @@ button{
   margin-bottom:15px;
   white-space:pre-wrap;
   word-break:break-word;
+  line-height:1.5;
 }
 
-/* APP */
+/* =========================
+   APP
+========================= */
+
 #app{
   min-height:100vh;
 }
@@ -487,6 +506,7 @@ button{
   margin-top:8px;
   font-size:24px;
   font-weight:850;
+  word-break:break-word;
 }
 
 .stat-foot{
@@ -557,7 +577,8 @@ table{
   min-width:650px;
 }
 
-th,td{
+th,
+td{
   padding:12px 14px;
   border-bottom:1px solid var(--line);
   text-align:left;
@@ -758,7 +779,12 @@ th{
   max-width:360px;
 }
 
+/* =========================
+   RESPONSIVE
+========================= */
+
 @media(max-width:1000px){
+
   .stat-grid{
     grid-template-columns:repeat(2,1fr);
   }
@@ -769,6 +795,7 @@ th{
 }
 
 @media(max-width:760px){
+
   .sidebar{
     transform:translateX(-100%);
     transition:.2s;
@@ -839,6 +866,7 @@ th{
 }
 
 @media(max-width:430px){
+
   .stat-grid{
     grid-template-columns:1fr 1fr;
   }
@@ -856,55 +884,140 @@ th{
 
 <body>
 
-<!-- AUTH SCREEN -->
+<!-- =========================
+     AUTH SCREEN
+========================= -->
+
 <section id="authScreen">
 
   <div class="auth-box">
 
     <div class="brand">
-      <div class="brand-icon">SME</div>
+
+      <div class="brand-icon">
+        SME
+      </div>
+
       <div>
         <h1>SME Business OS</h1>
         <p>Professional Business Management System</p>
       </div>
+
     </div>
 
-    <h2 class="auth-title">Welcome back</h2>
+    <h2 class="auth-title">
+      Welcome back
+    </h2>
+
     <p class="auth-subtitle">
       Manage your sales, inventory, customers and business performance in one place
     </p>
 
     <div id="authError" class="auth-error hidden"></div>
 
-    <button class="btn btn-google" id="googleBtn">
-      <svg class="google-icon" viewBox="0 0 24 24">
-        <path fill="#4285F4" d="M21.35 12.27c0-.79-.07-1.55-.2-2.27H12v4.3h5.24a4.48 4.48 0 0 1-1.94 2.94v2.45h3.14c1.84-1.7 2.91-4.2 2.91-7.42z"/>
-        <path fill="#34A853" d="M12 21.9c2.63 0 4.84-.87 6.45-2.35l-3.14-2.45c-.87.58-1.98.92-3.31.92-2.54 0-4.7-1.72-5.47-4.04H3.28v2.53A9.75 9.75 0 0 0 12 21.9z"/>
-        <path fill="#FBBC05" d="M6.53 13.98A5.86 5.86 0 0 1 6.22 12c0-.69.12-1.36.31-1.98V7.49H3.28A9.75 9.75 0 0 0 2.25 12c0 1.57.38 3.05 1.03 4.51l3.25-2.53z"/>
-        <path fill="#EA4335" d="M12 5.98c1.43 0 2.71.49 3.72 1.45l2.79-2.79C16.83 3.01 14.63 2.1 12 2.1a9.75 9.75 0 0 0-8.72 5.39l3.25 2.53C7.3 7.7 9.46 5.98 12 5.98z"/>
+    <button
+      class="btn btn-google"
+      id="googleBtn"
+      type="button"
+    >
+
+      <svg
+        class="google-icon"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path
+          fill="#4285F4"
+          d="M21.35 12.27c0-.79-.07-1.55-.2-2.27H12v4.3h5.24a4.48 4.48 0 0 1-1.94 2.94v2.45h3.14c1.84-1.7 2.91-4.2 2.91-7.42z"
+        />
+
+        <path
+          fill="#34A853"
+          d="M12 21.9c2.63 0 4.84-.87 6.45-2.35l-3.14-2.45c-.87.58-1.98.92-3.31.92-2.54 0-4.7-1.72-5.47-4.04H3.28v2.53A9.75 9.75 0 0 0 12 21.9z"
+        />
+
+        <path
+          fill="#FBBC05"
+          d="M6.53 13.98A5.86 5.86 0 0 1 6.22 12c0-.69.12-1.36.31-1.98V7.49H3.28A9.75 9.75 0 0 0 2.25 12c0 1.57.38 3.05 1.03 4.51l3.25-2.53z"
+        />
+
+        <path
+          fill="#EA4335"
+          d="M12 5.98c1.43 0 2.71.49 3.72 1.45l2.79-2.79C16.83 3.01 14.63 2.1 12 2.1a9.75 9.75 0 0 0-8.72 5.39l3.25 2.53C7.3 7.7 9.46 5.98 12 5.98z"
+        />
       </svg>
-      Continue with Google
+
+      <span id="googleBtnText">
+        Continue with Google
+      </span>
+
     </button>
 
-    <div class="divider">OR</div>
-
-    <div class="field">
-      <label>Email address</label>
-      <input id="emailInput" type="email" placeholder="you@example.com" autocomplete="email">
+    <div class="divider">
+      OR
     </div>
 
     <div class="field">
-      <label>Password</label>
-      <input id="passwordInput" type="password" placeholder="Enter password" autocomplete="current-password">
+
+      <label>
+        Email address
+      </label>
+
+      <input
+        id="emailInput"
+        type="email"
+        placeholder="you@example.com"
+        autocomplete="email"
+      >
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        Password
+      </label>
+
+      <input
+        id="passwordInput"
+        type="password"
+        placeholder="Enter password"
+        autocomplete="current-password"
+      >
+
     </div>
 
     <div class="auth-actions">
-      <button class="btn btn-primary" id="loginBtn">Sign In</button>
-      <button class="btn" id="registerBtn" style="background:#e2e8f0">Create Account</button>
+
+      <button
+        class="btn btn-primary"
+        id="loginBtn"
+        type="button"
+      >
+        Sign In
+      </button>
+
+      <button
+        class="btn"
+        id="registerBtn"
+        type="button"
+        style="background:#e2e8f0"
+      >
+        Create Account
+      </button>
+
     </div>
 
     <div style="text-align:center;margin-top:14px">
-      <button class="auth-link" id="forgotBtn">Forgot password?</button>
+
+      <button
+        class="auth-link"
+        id="forgotBtn"
+        type="button"
+      >
+        Forgot password?
+      </button>
+
     </div>
 
   </div>
@@ -912,107 +1025,217 @@ th{
 </section>
 
 
-<!-- MAIN APP -->
+<!-- =========================
+     MAIN APP
+========================= -->
+
 <div id="app" class="hidden">
 
-  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <div
+    class="mobile-overlay"
+    id="mobileOverlay"
+  ></div>
 
-  <aside class="sidebar" id="sidebar">
+  <aside
+    class="sidebar"
+    id="sidebar"
+  >
 
     <div class="sidebar-top">
+
       <div class="sidebar-brand">
-        <div class="sidebar-logo">S</div>
-        <div>
-          <strong>SME Business OS</strong>
-          <span>Professional Business System</span>
+
+        <div class="sidebar-logo">
+          S
         </div>
+
+        <div>
+
+          <strong>
+            SME Business OS
+          </strong>
+
+          <span>
+            Professional Business System
+          </span>
+
+        </div>
+
       </div>
+
     </div>
+
 
     <div class="sidebar-scroll">
 
-      <div class="nav-title">WORKSPACE</div>
+      <div class="nav-title">
+        WORKSPACE
+      </div>
 
-      <button class="nav-btn active" data-page="dashboard">
-        <span class="nav-icon">⌂</span> Dashboard
+      <button
+        class="nav-btn active"
+        data-page="dashboard"
+      >
+        <span class="nav-icon">⌂</span>
+        Dashboard
       </button>
 
-      <button class="nav-btn" data-page="sales">
-        <span class="nav-icon">▣</span> Sales
+      <button
+        class="nav-btn"
+        data-page="sales"
+      >
+        <span class="nav-icon">▣</span>
+        Sales
       </button>
 
-      <button class="nav-btn" data-page="purchases">
-        <span class="nav-icon">↗</span> Purchases
+      <button
+        class="nav-btn"
+        data-page="purchases"
+      >
+        <span class="nav-icon">↗</span>
+        Purchases
       </button>
 
-      <button class="nav-btn" data-page="products">
-        <span class="nav-icon">▤</span> Products
+      <button
+        class="nav-btn"
+        data-page="products"
+      >
+        <span class="nav-icon">▤</span>
+        Products
       </button>
 
-      <button class="nav-btn" data-page="inventory">
-        <span class="nav-icon">◫</span> Inventory
-      </button>
-
-
-      <div class="nav-title">CUSTOMERS</div>
-
-      <button class="nav-btn" data-page="customers">
-        <span class="nav-icon">♙</span> Customers
-      </button>
-
-      <button class="nav-btn" data-page="receivables">
-        <span class="nav-icon">◉</span> Receivables
-      </button>
-
-
-      <div class="nav-title">SUPPLIERS</div>
-
-      <button class="nav-btn" data-page="suppliers">
-        <span class="nav-icon">♧</span> Suppliers
-      </button>
-
-      <button class="nav-btn" data-page="payables">
-        <span class="nav-icon">◎</span> Payables
-      </button>
-
-
-      <div class="nav-title">FINANCE</div>
-
-      <button class="nav-btn" data-page="expenses">
-        <span class="nav-icon">−</span> Expenses
-      </button>
-
-      <button class="nav-btn" data-page="cashbook">
-        <span class="nav-icon">▤</span> Cashbook
-      </button>
-
-      <button class="nav-btn" data-page="reports">
-        <span class="nav-icon">▥</span> Reports
+      <button
+        class="nav-btn"
+        data-page="inventory"
+      >
+        <span class="nav-icon">◫</span>
+        Inventory
       </button>
 
 
-      <div class="nav-title">MANAGEMENT</div>
+      <div class="nav-title">
+        CUSTOMERS
+      </div>
 
-      <button class="nav-btn" data-page="users">
-        <span class="nav-icon">♟</span> Users
+      <button
+        class="nav-btn"
+        data-page="customers"
+      >
+        <span class="nav-icon">♙</span>
+        Customers
       </button>
 
-      <button class="nav-btn" data-page="settings">
-        <span class="nav-icon">⚙</span> Settings
+      <button
+        class="nav-btn"
+        data-page="receivables"
+      >
+        <span class="nav-icon">◉</span>
+        Receivables
+      </button>
+
+
+      <div class="nav-title">
+        SUPPLIERS
+      </div>
+
+      <button
+        class="nav-btn"
+        data-page="suppliers"
+      >
+        <span class="nav-icon">♧</span>
+        Suppliers
+      </button>
+
+      <button
+        class="nav-btn"
+        data-page="payables"
+      >
+        <span class="nav-icon">◎</span>
+        Payables
+      </button>
+
+
+      <div class="nav-title">
+        FINANCE
+      </div>
+
+      <button
+        class="nav-btn"
+        data-page="expenses"
+      >
+        <span class="nav-icon">−</span>
+        Expenses
+      </button>
+
+      <button
+        class="nav-btn"
+        data-page="cashbook"
+      >
+        <span class="nav-icon">▤</span>
+        Cashbook
+      </button>
+
+      <button
+        class="nav-btn"
+        data-page="reports"
+      >
+        <span class="nav-icon">▥</span>
+        Reports
+      </button>
+
+
+      <div class="nav-title">
+        MANAGEMENT
+      </div>
+
+      <button
+        class="nav-btn"
+        data-page="users"
+      >
+        <span class="nav-icon">♟</span>
+        Users
+      </button>
+
+      <button
+        class="nav-btn"
+        data-page="settings"
+      >
+        <span class="nav-icon">⚙</span>
+        Settings
       </button>
 
     </div>
+
 
     <div class="sidebar-bottom">
 
       <div class="premium-box">
-        <strong>★ Premium Business</strong>
-        <p>Unlock advanced business tools and analytics</p>
-        <button class="premium-btn" id="premiumBtn">VIEW PREMIUM</button>
+
+        <strong>
+          ★ Premium Business
+        </strong>
+
+        <p>
+          Unlock advanced business tools and analytics
+        </p>
+
+        <button
+          class="premium-btn"
+          id="premiumBtn"
+          type="button"
+        >
+          VIEW PREMIUM
+        </button>
+
       </div>
 
-      <button class="nav-btn" id="logoutBtn">
-        <span class="nav-icon">↪</span> Sign Out
+      <button
+        class="nav-btn"
+        id="logoutBtn"
+        type="button"
+      >
+        <span class="nav-icon">↪</span>
+        Sign Out
       </button>
 
     </div>
@@ -1025,20 +1248,54 @@ th{
     <header class="topbar">
 
       <div class="topbar-left">
-        <button class="menu-toggle" id="menuToggle">☰</button>
+
+        <button
+          class="menu-toggle"
+          id="menuToggle"
+          type="button"
+        >
+          ☰
+        </button>
 
         <div>
-          <div class="page-title" id="pageTitle">Dashboard</div>
-          <div class="page-subtitle">Business Management Command Center</div>
+
+          <div
+            class="page-title"
+            id="pageTitle"
+          >
+            Dashboard
+          </div>
+
+          <div class="page-subtitle">
+            Business Management Command Center
+          </div>
+
         </div>
+
       </div>
 
+
       <div class="profile">
-        <div class="avatar" id="avatar">AZ</div>
-        <div class="profile-info">
-          <strong id="profileName">Business Owner</strong>
-          <span id="profileEmail">—</span>
+
+        <div
+          class="avatar"
+          id="avatar"
+        >
+          AZ
         </div>
+
+        <div class="profile-info">
+
+          <strong id="profileName">
+            Business Owner
+          </strong>
+
+          <span id="profileEmail">
+            —
+          </span>
+
+        </div>
+
       </div>
 
     </header>
@@ -1048,98 +1305,225 @@ th{
 
 
       <!-- DASHBOARD -->
-      <section class="page active" id="page-dashboard">
+
+      <section
+        class="page active"
+        id="page-dashboard"
+      >
 
         <div class="hero">
-          <h2 id="welcomeText">Welcome back</h2>
-          <p>Monitor your business performance, sales, inventory and cash flow</p>
+
+          <h2 id="welcomeText">
+            Welcome back
+          </h2>
+
+          <p>
+            Monitor your business performance, sales, inventory and cash flow
+          </p>
+
         </div>
+
 
         <div class="stat-grid">
 
           <div class="stat">
-            <div class="stat-label">TOTAL SALES</div>
-            <div class="stat-value" id="dashSales">0</div>
-            <div class="stat-foot">All recorded sales</div>
+
+            <div class="stat-label">
+              TOTAL SALES
+            </div>
+
+            <div
+              class="stat-value"
+              id="dashSales"
+            >
+              0
+            </div>
+
+            <div class="stat-foot">
+              All recorded sales
+            </div>
+
           </div>
 
-          <div class="stat">
-            <div class="stat-label">TOTAL PURCHASES</div>
-            <div class="stat-value" id="dashPurchases">0</div>
-            <div class="stat-foot">All recorded purchases</div>
-          </div>
 
           <div class="stat">
-            <div class="stat-label">CUSTOMER DUE</div>
-            <div class="stat-value" id="dashReceivable">0</div>
-            <div class="stat-foot">Outstanding receivables</div>
+
+            <div class="stat-label">
+              TOTAL PURCHASES
+            </div>
+
+            <div
+              class="stat-value"
+              id="dashPurchases"
+            >
+              0
+            </div>
+
+            <div class="stat-foot">
+              All recorded purchases
+            </div>
+
           </div>
 
+
           <div class="stat">
-            <div class="stat-label">PRODUCTS</div>
-            <div class="stat-value" id="dashProducts">0</div>
-            <div class="stat-foot">Active products</div>
+
+            <div class="stat-label">
+              CUSTOMER DUE
+            </div>
+
+            <div
+              class="stat-value"
+              id="dashReceivable"
+            >
+              0
+            </div>
+
+            <div class="stat-foot">
+              Outstanding receivables
+            </div>
+
+          </div>
+
+
+          <div class="stat">
+
+            <div class="stat-label">
+              PRODUCTS
+            </div>
+
+            <div
+              class="stat-value"
+              id="dashProducts"
+            >
+              0
+            </div>
+
+            <div class="stat-foot">
+              Active products
+            </div>
+
           </div>
 
         </div>
 
+
         <div class="dashboard-grid">
 
+
           <div class="card">
+
             <div class="card-head">
-              <h3>Quick Actions</h3>
+
+              <h3>
+                Quick Actions
+              </h3>
+
             </div>
 
             <div class="card-body">
+
               <div class="quick-grid">
 
-                <button class="quick-btn" data-go="sales">
+                <button
+                  class="quick-btn"
+                  data-go="sales"
+                  type="button"
+                >
                   + New Sale
                 </button>
 
-                <button class="quick-btn" data-go="purchases">
+                <button
+                  class="quick-btn"
+                  data-go="purchases"
+                  type="button"
+                >
                   + New Purchase
                 </button>
 
-                <button class="quick-btn" data-go="products">
+                <button
+                  class="quick-btn"
+                  data-go="products"
+                  type="button"
+                >
                   + Add Product
                 </button>
 
-                <button class="quick-btn" data-go="customers">
+                <button
+                  class="quick-btn"
+                  data-go="customers"
+                  type="button"
+                >
                   + Add Customer
                 </button>
 
               </div>
+
             </div>
+
           </div>
 
 
           <div class="card">
+
             <div class="card-head">
-              <h3>Business Status</h3>
+
+              <h3>
+                Business Status
+              </h3>
+
             </div>
 
             <div class="card-body">
 
+
               <div class="setting-item">
+
                 <div>
-                  <strong>Cloud Database</strong>
-                  <span>Firebase Firestore</span>
+
+                  <strong>
+                    Cloud Database
+                  </strong>
+
+                  <span>
+                    Firebase Firestore
+                  </span>
+
                 </div>
-                <span class="badge badge-green">CONNECTED</span>
+
+                <span class="badge badge-green">
+                  CONNECTED
+                </span>
+
               </div>
+
 
               <div style="height:10px"></div>
 
+
               <div class="setting-item">
+
                 <div>
-                  <strong>Account</strong>
-                  <span id="dashAccountType">Google / Email</span>
+
+                  <strong>
+                    Account
+                  </strong>
+
+                  <span id="dashAccountType">
+                    Google / Email
+                  </span>
+
                 </div>
-                <span class="badge badge-green">ACTIVE</span>
+
+                <span class="badge badge-green">
+                  ACTIVE
+                </span>
+
               </div>
 
+
             </div>
+
           </div>
 
         </div>
@@ -1148,20 +1532,44 @@ th{
 
 
       <!-- SALES -->
-      <section class="page" id="page-sales">
 
-        <h2 class="section-title">Sales Management</h2>
+      <section
+        class="page"
+        id="page-sales"
+      >
+
+        <h2 class="section-title">
+          Sales Management
+        </h2>
 
         <div class="toolbar">
-          <input id="salesSearch" placeholder="Search invoice or customer">
+
+          <input
+            id="salesSearch"
+            placeholder="Search invoice or customer"
+          >
+
           <div class="spacer"></div>
-          <button class="btn btn-primary" id="newSaleBtn">+ New Sale</button>
+
+          <button
+            class="btn btn-primary"
+            id="newSaleBtn"
+            type="button"
+          >
+            + New Sale
+          </button>
+
         </div>
 
+
         <div class="card">
+
           <div class="table-wrap">
+
             <table>
+
               <thead>
+
                 <tr>
                   <th>Invoice</th>
                   <th>Date</th>
@@ -1170,30 +1578,59 @@ th{
                   <th>Payment</th>
                   <th>Status</th>
                 </tr>
+
               </thead>
+
               <tbody id="salesTable"></tbody>
+
             </table>
+
           </div>
+
         </div>
 
       </section>
 
 
       <!-- PURCHASES -->
-      <section class="page" id="page-purchases">
 
-        <h2 class="section-title">Purchase Management</h2>
+      <section
+        class="page"
+        id="page-purchases"
+      >
+
+        <h2 class="section-title">
+          Purchase Management
+        </h2>
 
         <div class="toolbar">
-          <input id="purchaseSearch" placeholder="Search supplier or invoice">
+
+          <input
+            id="purchaseSearch"
+            placeholder="Search supplier or invoice"
+          >
+
           <div class="spacer"></div>
-          <button class="btn btn-primary" id="newPurchaseBtn">+ New Purchase</button>
+
+          <button
+            class="btn btn-primary"
+            id="newPurchaseBtn"
+            type="button"
+          >
+            + New Purchase
+          </button>
+
         </div>
 
+
         <div class="card">
+
           <div class="table-wrap">
+
             <table>
+
               <thead>
+
                 <tr>
                   <th>Invoice</th>
                   <th>Date</th>
@@ -1202,30 +1639,59 @@ th{
                   <th>Payment</th>
                   <th>Status</th>
                 </tr>
+
               </thead>
+
               <tbody id="purchasesTable"></tbody>
+
             </table>
+
           </div>
+
         </div>
 
       </section>
 
 
       <!-- PRODUCTS -->
-      <section class="page" id="page-products">
 
-        <h2 class="section-title">Product Management</h2>
+      <section
+        class="page"
+        id="page-products"
+      >
+
+        <h2 class="section-title">
+          Product Management
+        </h2>
 
         <div class="toolbar">
-          <input id="productSearch" placeholder="Search product">
+
+          <input
+            id="productSearch"
+            placeholder="Search product"
+          >
+
           <div class="spacer"></div>
-          <button class="btn btn-primary" id="newProductBtn">+ Add Product</button>
+
+          <button
+            class="btn btn-primary"
+            id="newProductBtn"
+            type="button"
+          >
+            + Add Product
+          </button>
+
         </div>
 
+
         <div class="card">
+
           <div class="table-wrap">
+
             <table>
+
               <thead>
+
                 <tr>
                   <th>Product</th>
                   <th>Category</th>
@@ -1234,48 +1700,107 @@ th{
                   <th>Price</th>
                   <th>Stock</th>
                 </tr>
+
               </thead>
+
               <tbody id="productsTable"></tbody>
+
             </table>
+
           </div>
+
         </div>
 
       </section>
 
 
       <!-- INVENTORY -->
-      <section class="page" id="page-inventory">
 
-        <h2 class="section-title">Inventory</h2>
+      <section
+        class="page"
+        id="page-inventory"
+      >
+
+        <h2 class="section-title">
+          Inventory
+        </h2>
 
         <div class="stat-grid">
 
           <div class="stat">
-            <div class="stat-label">PRODUCTS</div>
-            <div class="stat-value" id="invProducts">0</div>
+
+            <div class="stat-label">
+              PRODUCTS
+            </div>
+
+            <div
+              class="stat-value"
+              id="invProducts"
+            >
+              0
+            </div>
+
           </div>
 
-          <div class="stat">
-            <div class="stat-label">TOTAL STOCK</div>
-            <div class="stat-value" id="invStock">0</div>
-          </div>
 
           <div class="stat">
-            <div class="stat-label">LOW STOCK</div>
-            <div class="stat-value" id="invLow">0</div>
+
+            <div class="stat-label">
+              TOTAL STOCK
+            </div>
+
+            <div
+              class="stat-value"
+              id="invStock"
+            >
+              0
+            </div>
+
           </div>
 
+
           <div class="stat">
-            <div class="stat-label">STOCK VALUE</div>
-            <div class="stat-value" id="invValue">0</div>
+
+            <div class="stat-label">
+              LOW STOCK
+            </div>
+
+            <div
+              class="stat-value"
+              id="invLow"
+            >
+              0
+            </div>
+
+          </div>
+
+
+          <div class="stat">
+
+            <div class="stat-label">
+              STOCK VALUE
+            </div>
+
+            <div
+              class="stat-value"
+              id="invValue"
+            >
+              0
+            </div>
+
           </div>
 
         </div>
 
+
         <div class="card">
+
           <div class="table-wrap">
+
             <table>
+
               <thead>
+
                 <tr>
                   <th>Product</th>
                   <th>Unit</th>
@@ -1284,63 +1809,118 @@ th{
                   <th>Stock Value</th>
                   <th>Status</th>
                 </tr>
+
               </thead>
+
               <tbody id="inventoryTable"></tbody>
+
             </table>
+
           </div>
+
         </div>
 
       </section>
 
 
       <!-- CUSTOMERS -->
-      <section class="page" id="page-customers">
 
-        <h2 class="section-title">Customers</h2>
+      <section
+        class="page"
+        id="page-customers"
+      >
+
+        <h2 class="section-title">
+          Customers
+        </h2>
 
         <div class="toolbar">
-          <input id="customerSearch" placeholder="Search customer">
+
+          <input
+            id="customerSearch"
+            placeholder="Search customer"
+          >
+
           <div class="spacer"></div>
-          <button class="btn btn-primary" id="newCustomerBtn">+ Add Customer</button>
+
+          <button
+            class="btn btn-primary"
+            id="newCustomerBtn"
+            type="button"
+          >
+            + Add Customer
+          </button>
+
         </div>
 
+
         <div class="card">
+
           <div class="table-wrap">
+
             <table>
+
               <thead>
+
                 <tr>
                   <th>Name</th>
                   <th>Phone</th>
                   <th>Address</th>
                   <th>Outstanding</th>
                 </tr>
+
               </thead>
+
               <tbody id="customersTable"></tbody>
+
             </table>
+
           </div>
+
         </div>
 
       </section>
 
 
       <!-- RECEIVABLES -->
-      <section class="page" id="page-receivables">
 
-        <h2 class="section-title">Customer Receivables</h2>
+      <section
+        class="page"
+        id="page-receivables"
+      >
+
+        <h2 class="section-title">
+          Customer Receivables
+        </h2>
 
         <div class="stat-grid">
 
           <div class="stat">
-            <div class="stat-label">CUSTOMER DUE</div>
-            <div class="stat-value" id="receivableTotal">0</div>
+
+            <div class="stat-label">
+              CUSTOMER DUE
+            </div>
+
+            <div
+              class="stat-value"
+              id="receivableTotal"
+            >
+              0
+            </div>
+
           </div>
 
         </div>
 
+
         <div class="card">
+
           <div class="table-wrap">
+
             <table>
+
               <thead>
+
                 <tr>
                   <th>Customer</th>
                   <th>Invoice</th>
@@ -1349,63 +1929,118 @@ th{
                   <th>Paid</th>
                   <th>Balance</th>
                 </tr>
+
               </thead>
+
               <tbody id="receivablesTable"></tbody>
+
             </table>
+
           </div>
+
         </div>
 
       </section>
 
 
       <!-- SUPPLIERS -->
-      <section class="page" id="page-suppliers">
 
-        <h2 class="section-title">Suppliers</h2>
+      <section
+        class="page"
+        id="page-suppliers"
+      >
+
+        <h2 class="section-title">
+          Suppliers
+        </h2>
 
         <div class="toolbar">
-          <input id="supplierSearch" placeholder="Search supplier">
+
+          <input
+            id="supplierSearch"
+            placeholder="Search supplier"
+          >
+
           <div class="spacer"></div>
-          <button class="btn btn-primary" id="newSupplierBtn">+ Add Supplier</button>
+
+          <button
+            class="btn btn-primary"
+            id="newSupplierBtn"
+            type="button"
+          >
+            + Add Supplier
+          </button>
+
         </div>
 
+
         <div class="card">
+
           <div class="table-wrap">
+
             <table>
+
               <thead>
+
                 <tr>
                   <th>Name</th>
                   <th>Phone</th>
                   <th>Address</th>
                   <th>Outstanding</th>
                 </tr>
+
               </thead>
+
               <tbody id="suppliersTable"></tbody>
+
             </table>
+
           </div>
+
         </div>
 
       </section>
 
 
       <!-- PAYABLES -->
-      <section class="page" id="page-payables">
 
-        <h2 class="section-title">Supplier Payables</h2>
+      <section
+        class="page"
+        id="page-payables"
+      >
+
+        <h2 class="section-title">
+          Supplier Payables
+        </h2>
 
         <div class="stat-grid">
 
           <div class="stat">
-            <div class="stat-label">SUPPLIER DUE</div>
-            <div class="stat-value" id="payableTotal">0</div>
+
+            <div class="stat-label">
+              SUPPLIER DUE
+            </div>
+
+            <div
+              class="stat-value"
+              id="payableTotal"
+            >
+              0
+            </div>
+
           </div>
 
         </div>
 
+
         <div class="card">
+
           <div class="table-wrap">
+
             <table>
+
               <thead>
+
                 <tr>
                   <th>Supplier</th>
                   <th>Invoice</th>
@@ -1414,200 +2049,435 @@ th{
                   <th>Paid</th>
                   <th>Balance</th>
                 </tr>
+
               </thead>
+
               <tbody id="payablesTable"></tbody>
+
             </table>
+
           </div>
+
         </div>
 
       </section>
 
 
       <!-- EXPENSES -->
-      <section class="page" id="page-expenses">
 
-        <h2 class="section-title">Expenses</h2>
+      <section
+        class="page"
+        id="page-expenses"
+      >
+
+        <h2 class="section-title">
+          Expenses
+        </h2>
 
         <div class="toolbar">
+
           <div class="spacer"></div>
-          <button class="btn btn-primary" id="newExpenseBtn">+ Add Expense</button>
+
+          <button
+            class="btn btn-primary"
+            id="newExpenseBtn"
+            type="button"
+          >
+            + Add Expense
+          </button>
+
         </div>
 
+
         <div class="card">
+
           <div class="table-wrap">
+
             <table>
+
               <thead>
+
                 <tr>
                   <th>Date</th>
                   <th>Category</th>
                   <th>Description</th>
                   <th>Amount</th>
                 </tr>
+
               </thead>
+
               <tbody id="expensesTable"></tbody>
+
             </table>
+
           </div>
+
         </div>
 
       </section>
 
 
       <!-- CASHBOOK -->
-      <section class="page" id="page-cashbook">
 
-        <h2 class="section-title">Cashbook</h2>
+      <section
+        class="page"
+        id="page-cashbook"
+      >
+
+        <h2 class="section-title">
+          Cashbook
+        </h2>
 
         <div class="stat-grid">
 
           <div class="stat">
-            <div class="stat-label">CASH IN</div>
-            <div class="stat-value" id="cashIn">0</div>
+
+            <div class="stat-label">
+              CASH IN
+            </div>
+
+            <div
+              class="stat-value"
+              id="cashIn"
+            >
+              0
+            </div>
+
           </div>
 
-          <div class="stat">
-            <div class="stat-label">CASH OUT</div>
-            <div class="stat-value" id="cashOut">0</div>
-          </div>
 
           <div class="stat">
-            <div class="stat-label">NET CASH FLOW</div>
-            <div class="stat-value" id="cashNet">0</div>
+
+            <div class="stat-label">
+              CASH OUT
+            </div>
+
+            <div
+              class="stat-value"
+              id="cashOut"
+            >
+              0
+            </div>
+
+          </div>
+
+
+          <div class="stat">
+
+            <div class="stat-label">
+              NET CASH FLOW
+            </div>
+
+            <div
+              class="stat-value"
+              id="cashNet"
+            >
+              0
+            </div>
+
           </div>
 
         </div>
 
+
         <div class="card">
+
           <div class="table-wrap">
+
             <table>
+
               <thead>
+
                 <tr>
                   <th>Date</th>
                   <th>Type</th>
                   <th>Description</th>
                   <th>Amount</th>
                 </tr>
+
               </thead>
+
               <tbody id="cashbookTable"></tbody>
+
             </table>
+
           </div>
+
         </div>
 
       </section>
 
 
       <!-- REPORTS -->
-      <section class="page" id="page-reports">
 
-        <h2 class="section-title">Business Reports</h2>
+      <section
+        class="page"
+        id="page-reports"
+      >
+
+        <h2 class="section-title">
+          Business Reports
+        </h2>
 
         <div class="stat-grid">
 
           <div class="stat">
-            <div class="stat-label">REVENUE</div>
-            <div class="stat-value" id="reportRevenue">0</div>
+
+            <div class="stat-label">
+              REVENUE
+            </div>
+
+            <div
+              class="stat-value"
+              id="reportRevenue"
+            >
+              0
+            </div>
+
           </div>
 
-          <div class="stat">
-            <div class="stat-label">COGS</div>
-            <div class="stat-value" id="reportCOGS">0</div>
-          </div>
 
           <div class="stat">
-            <div class="stat-label">GROSS PROFIT</div>
-            <div class="stat-value" id="reportGross">0</div>
+
+            <div class="stat-label">
+              COGS
+            </div>
+
+            <div
+              class="stat-value"
+              id="reportCOGS"
+            >
+              0
+            </div>
+
           </div>
 
+
           <div class="stat">
-            <div class="stat-label">EXPENSES</div>
-            <div class="stat-value" id="reportExpenses">0</div>
+
+            <div class="stat-label">
+              GROSS PROFIT
+            </div>
+
+            <div
+              class="stat-value"
+              id="reportGross"
+            >
+              0
+            </div>
+
+          </div>
+
+
+          <div class="stat">
+
+            <div class="stat-label">
+              EXPENSES
+            </div>
+
+            <div
+              class="stat-value"
+              id="reportExpenses"
+            >
+              0
+            </div>
+
           </div>
 
         </div>
 
+
         <div class="card">
+
           <div class="card-head">
-            <h3>Financial Summary</h3>
+
+            <h3>
+              Financial Summary
+            </h3>
+
           </div>
+
           <div class="card-body">
+
             <div class="notice notice-info">
+
               Gross Profit = Revenue − Cost of Goods Sold
+
               <br>
+
               Net Profit = Gross Profit − Operating Expenses
+
             </div>
-            <div id="netProfitBox" style="font-size:28px;font-weight:850">0 MMK</div>
+
+            <div
+              id="netProfitBox"
+              style="font-size:28px;font-weight:850"
+            >
+              0 MMK
+            </div>
+
           </div>
+
         </div>
 
       </section>
 
 
       <!-- USERS -->
-      <section class="page" id="page-users">
 
-        <h2 class="section-title">Users & Permissions</h2>
+      <section
+        class="page"
+        id="page-users"
+      >
+
+        <h2 class="section-title">
+          Users & Permissions
+        </h2>
 
         <div class="notice notice-warning">
+
           Staff accounts can be added after the core business setup is completed
+
         </div>
 
+
         <div class="card">
+
           <div class="card-body">
+
             <div class="setting-item">
+
               <div>
-                <strong id="userDisplayName">—</strong>
-                <span id="userDisplayEmail">—</span>
+
+                <strong id="userDisplayName">
+                  —
+                </strong>
+
+                <span id="userDisplayEmail">
+                  —
+                </span>
+
               </div>
-              <span class="badge badge-green">OWNER</span>
+
+              <span class="badge badge-green">
+                OWNER
+              </span>
+
             </div>
+
           </div>
+
         </div>
 
       </section>
 
 
       <!-- SETTINGS -->
-      <section class="page" id="page-settings">
 
-        <h2 class="section-title">Business Settings</h2>
+      <section
+        class="page"
+        id="page-settings"
+      >
+
+        <h2 class="section-title">
+          Business Settings
+        </h2>
+
 
         <div class="card">
 
           <div class="card-head">
-            <h3>Business Profile</h3>
+
+            <h3>
+              Business Profile
+            </h3>
+
           </div>
+
 
           <div class="card-body">
 
             <div class="form-grid">
 
-              <div class="field">
-                <label>Business Name</label>
-                <input id="settingBusinessName" placeholder="My SME Business">
-              </div>
 
               <div class="field">
-                <label>Phone</label>
-                <input id="settingPhone" placeholder="09xxxxxxxxx">
+
+                <label>
+                  Business Name
+                </label>
+
+                <input
+                  id="settingBusinessName"
+                  placeholder="My SME Business"
+                >
+
               </div>
+
+
+              <div class="field">
+
+                <label>
+                  Phone
+                </label>
+
+                <input
+                  id="settingPhone"
+                  placeholder="09xxxxxxxxx"
+                >
+
+              </div>
+
 
               <div class="field full">
-                <label>Address</label>
-                <textarea id="settingAddress" rows="3"></textarea>
+
+                <label>
+                  Address
+                </label>
+
+                <textarea
+                  id="settingAddress"
+                  rows="3"
+                ></textarea>
+
               </div>
 
-              <div class="field">
-                <label>Currency</label>
-                <input id="settingCurrency" value="MMK">
-              </div>
 
               <div class="field">
-                <label>Invoice Footer</label>
-                <input id="settingFooter" placeholder="Thank you for your business">
+
+                <label>
+                  Currency
+                </label>
+
+                <input
+                  id="settingCurrency"
+                  value="MMK"
+                >
+
               </div>
+
+
+              <div class="field">
+
+                <label>
+                  Invoice Footer
+                </label>
+
+                <input
+                  id="settingFooter"
+                  placeholder="Thank you for your business"
+                >
+
+              </div>
+
 
             </div>
 
-            <button class="btn btn-primary" id="saveSettingsBtn">
+
+            <button
+              class="btn btn-primary"
+              id="saveSettingsBtn"
+              type="button"
+            >
               Save Business Settings
             </button>
 
@@ -1615,25 +2485,47 @@ th{
 
         </div>
 
+
         <br>
+
 
         <div class="card">
 
           <div class="card-head">
-            <h3>Account</h3>
+
+            <h3>
+              Account
+            </h3>
+
           </div>
+
 
           <div class="card-body">
 
             <div class="setting-item">
+
               <div>
-                <strong>Signed-in account</strong>
-                <span id="settingsEmail">—</span>
+
+                <strong>
+                  Signed-in account
+                </strong>
+
+                <span id="settingsEmail">
+                  —
+                </span>
+
               </div>
 
-              <button class="btn" id="settingsLogout" style="background:#fee2e2;color:#991b1b">
+
+              <button
+                class="btn"
+                id="settingsLogout"
+                type="button"
+                style="background:#fee2e2;color:#991b1b"
+              >
                 Sign Out
               </button>
+
             </div>
 
           </div>
@@ -1644,25 +2536,65 @@ th{
 
 
     </div>
+
   </main>
+
 </div>
 
 
-<!-- MODAL -->
-<div class="modal" id="modal">
+<!-- =========================
+     MODAL
+========================= -->
+
+<div
+  class="modal"
+  id="modal"
+>
 
   <div class="modal-box">
 
     <div class="modal-head">
-      <h3 id="modalTitle">Add</h3>
-      <button class="modal-close" id="modalClose">×</button>
+
+      <h3 id="modalTitle">
+        Add
+      </h3>
+
+      <button
+        class="modal-close"
+        id="modalClose"
+        type="button"
+      >
+        ×
+      </button>
+
     </div>
 
-    <div class="modal-body" id="modalBody"></div>
+
+    <div
+      class="modal-body"
+      id="modalBody"
+    ></div>
+
 
     <div class="modal-foot">
-      <button class="btn" id="modalCancel" style="background:#e2e8f0">Cancel</button>
-      <button class="btn btn-primary" id="modalSave">Save</button>
+
+      <button
+        class="btn"
+        id="modalCancel"
+        type="button"
+        style="background:#e2e8f0"
+      >
+        Cancel
+      </button>
+
+      <button
+        class="btn btn-primary"
+        id="modalSave"
+        type="button"
+      >
+        Save
+      </button>
+
     </div>
 
   </div>
@@ -1670,13 +2602,20 @@ th{
 </div>
 
 
-<div id="toast" class="toast hidden"></div>
+<div
+  id="toast"
+  class="toast hidden"
+></div>
 
+
+<!-- =========================
+     FIREBASE / APPLICATION
+========================= -->
 
 <script type="module">
 
 /* =========================================================
-   FIREBASE
+   FIREBASE SDK
 ========================================================= */
 
 import {
@@ -1688,6 +2627,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   signInWithRedirect,
+  getRedirectResult,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
@@ -1703,30 +2643,59 @@ import {
   setDoc,
   collection,
   getDocs,
-  addDoc,
   updateDoc,
-  serverTimestamp,
-  query,
-  orderBy
+  serverTimestamp
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
 
+/* =========================================================
+   FIREBASE CONFIG
+   COPIED FROM FIREBASE CONSOLE
+========================================================= */
+
 const firebaseConfig = {
-  apiKey: "AIzaSyBGq3JSPbY86oZj2c20pinMjFQslp47Ogk",
-  authDomain: "sme-business-os.firebaseapp.com",
-  projectId: "sme-business-os",
-  storageBucket: "sme-business-os.firebasestorage.app",
-  messagingSenderId: "23491609372",
-  appId: "1:23491609372:web:89103f50dfed81cfdf70d9",
-  measurementId: "G-G62B6H4T5H"
+
+  apiKey:
+    "AIzaSyBGq3JSPB86oZj2c20pinMjFQslp47Ogk",
+
+  authDomain:
+    "sme-business-os.firebaseapp.com",
+
+  projectId:
+    "sme-business-os",
+
+  storageBucket:
+    "sme-business-os.firebasestorage.app",
+
+  messagingSenderId:
+    "23491609372",
+
+  appId:
+    "1:23491609372:web:89103f50dfed81cfdf70d9",
+
+  measurementId:
+    "G-G62B6H4T5H"
+
 };
 
 
-const firebaseApp = initializeApp(firebaseConfig);
-const auth = getAuth(firebaseApp);
-const db = getFirestore(firebaseApp);
+/* =========================================================
+   INITIALIZE FIREBASE
+========================================================= */
 
-const googleProvider = new GoogleAuthProvider();
+const firebaseApp =
+  initializeApp(firebaseConfig);
+
+const auth =
+  getAuth(firebaseApp);
+
+const db =
+  getFirestore(firebaseApp);
+
+
+const googleProvider =
+  new GoogleAuthProvider();
+
 googleProvider.setCustomParameters({
   prompt:"select_account"
 });
@@ -1737,9 +2706,12 @@ googleProvider.setCustomParameters({
 ========================================================= */
 
 let currentUser = null;
+
 let businessId = null;
 
+
 let data = {
+
   settings:{
     businessName:"My SME Business",
     phone:"",
@@ -1747,6 +2719,7 @@ let data = {
     currency:"MMK",
     invoiceFooter:"Thank you for your business"
   },
+
   products:[],
   sales:[],
   purchases:[],
@@ -1754,122 +2727,297 @@ let data = {
   suppliers:[],
   expenses:[],
   cashTransactions:[]
+
 };
 
 
 /* =========================================================
-   HELPERS
+   DOM HELPER
 ========================================================= */
 
 function $(id){
+
   return document.getElementById(id);
+
 }
 
+
+/* =========================================================
+   HTML ESCAPE
+========================================================= */
+
 function esc(value){
+
   return String(value ?? "")
     .replaceAll("&","&amp;")
     .replaceAll("<","&lt;")
     .replaceAll(">","&gt;")
     .replaceAll('"',"&quot;")
     .replaceAll("'","&#039;");
-}
 
-function money(value){
-  const n = Number(value || 0);
-  return n.toLocaleString("en-US") + " " + (data.settings.currency || "MMK");
-}
-
-function today(){
-  const d = new Date();
-  const p = n => String(n).padStart(2,"0");
-
-  return d.getFullYear()+"-"+
-    p(d.getMonth()+1)+"-"+
-    p(d.getDate());
-}
-
-function nowTime(){
-  const d = new Date();
-  return String(d.getHours()).padStart(2,"0")+":"+
-         String(d.getMinutes()).padStart(2,"0");
-}
-
-function id(prefix){
-  return prefix + "-" +
-    Date.now().toString(36) +
-    Math.random().toString(36).slice(2,7);
-}
-
-function showToast(message){
-  const el = $("toast");
-  el.textContent = message;
-  el.classList.remove("hidden");
-
-  clearTimeout(window.toastTimer);
-
-  window.toastTimer = setTimeout(()=>{
-    el.classList.add("hidden");
-  },3000);
-}
-
-function showAuthError(error){
-  console.error("AUTH ERROR:",error);
-
-  const code = error?.code || "unknown";
-  const message = error?.message || "Unknown Firebase error";
-
-  $("authError").textContent =
-    "Google / Firebase sign-in error\n\n" +
-    "Code: " + code + "\n\n" +
-    "Message: " + message;
-
-  $("authError").classList.remove("hidden");
-}
-
-function clearAuthError(){
-  $("authError").classList.add("hidden");
-  $("authError").textContent = "";
 }
 
 
 /* =========================================================
-   FIREBASE PATHS
+   MONEY
+========================================================= */
+
+function money(value){
+
+  const n =
+    Number(value || 0);
+
+  return (
+    n.toLocaleString("en-US") +
+    " " +
+    (data.settings.currency || "MMK")
+  );
+
+}
+
+
+/* =========================================================
+   LOCAL DATE
+========================================================= */
+
+function today(){
+
+  const d =
+    new Date();
+
+  const p =
+    n => String(n).padStart(2,"0");
+
+  return (
+    d.getFullYear() +
+    "-" +
+    p(d.getMonth()+1) +
+    "-" +
+    p(d.getDate())
+  );
+
+}
+
+
+/* =========================================================
+   LOCAL TIME
+========================================================= */
+
+function nowTime(){
+
+  const d =
+    new Date();
+
+  return (
+    String(d.getHours()).padStart(2,"0") +
+    ":" +
+    String(d.getMinutes()).padStart(2,"0")
+  );
+
+}
+
+
+/* =========================================================
+   ID
+========================================================= */
+
+function id(prefix){
+
+  return (
+    prefix +
+    "-" +
+    Date.now().toString(36) +
+    Math.random().toString(36).slice(2,7)
+  );
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(message){
+
+  const el =
+    $("toast");
+
+  el.textContent =
+    message;
+
+  el.classList.remove("hidden");
+
+  clearTimeout(
+    window.toastTimer
+  );
+
+  window.toastTimer =
+    setTimeout(()=>{
+      el.classList.add("hidden");
+    },3000);
+
+}
+
+
+/* =========================================================
+   AUTH ERROR
+========================================================= */
+
+function showAuthError(error){
+
+  console.error(
+    "AUTH ERROR:",
+    error
+  );
+
+  const code =
+    error?.code ||
+    "unknown";
+
+  const message =
+    error?.message ||
+    "Unknown Firebase error";
+
+
+  $("authError").textContent =
+    "Google / Firebase sign-in error\n\n" +
+    "Code: " +
+    code +
+    "\n\n" +
+    "Message: " +
+    message;
+
+
+  $("authError")
+    .classList
+    .remove("hidden");
+
+}
+
+
+function clearAuthError(){
+
+  $("authError")
+    .classList
+    .add("hidden");
+
+  $("authError")
+    .textContent =
+    "";
+
+}
+
+
+/* =========================================================
+   AUTH BUTTON STATE
+========================================================= */
+
+function setGoogleLoading(loading){
+
+  const btn =
+    $("googleBtn");
+
+  const text =
+    $("googleBtnText");
+
+  if(loading){
+
+    btn.disabled =
+      true;
+
+    text.textContent =
+      "Connecting to Google...";
+
+  }else{
+
+    btn.disabled =
+      false;
+
+    text.textContent =
+      "Continue with Google";
+
+  }
+
+}
+
+
+/* =========================================================
+   FIRESTORE REFERENCES
 ========================================================= */
 
 function businessRef(){
-  return doc(db,"businesses",businessId);
+
+  if(!businessId){
+    throw new Error(
+      "Business ID is not available"
+    );
+  }
+
+  return doc(
+    db,
+    "businesses",
+    businessId
+  );
+
 }
 
+
 function subCollection(name){
+
+  if(!businessId){
+    throw new Error(
+      "Business ID is not available"
+    );
+  }
+
   return collection(
     db,
     "businesses",
     businessId,
     name
   );
+
 }
 
 
 /* =========================================================
-   AUTH - GOOGLE
+   GOOGLE LOGIN
 ========================================================= */
 
 async function loginWithGoogle(){
 
   clearAuthError();
 
+  setGoogleLoading(true);
+
+
   try{
 
-    const isMobile = window.innerWidth <= 760;
+    const isMobile =
+      window.innerWidth <= 760;
+
 
     if(isMobile){
-      await signInWithRedirect(auth,googleProvider);
+
+      await signInWithRedirect(
+        auth,
+        googleProvider
+      );
+
       return;
+
     }
 
-    await signInWithPopup(auth,googleProvider);
+
+    await signInWithPopup(
+      auth,
+      googleProvider
+    );
+
 
   }catch(error){
+
+    setGoogleLoading(false);
 
     showAuthError(error);
 
@@ -1879,23 +3027,57 @@ async function loginWithGoogle(){
 
 
 /* =========================================================
-   AUTH - EMAIL LOGIN
+   REDIRECT RESULT
+========================================================= */
+
+async function checkRedirectResult(){
+
+  try{
+
+    await getRedirectResult(auth);
+
+  }catch(error){
+
+    setGoogleLoading(false);
+
+    showAuthError(error);
+
+  }
+
+}
+
+
+/* =========================================================
+   EMAIL LOGIN
 ========================================================= */
 
 async function loginEmail(){
 
   clearAuthError();
 
-  const email = $("emailInput").value.trim();
-  const password = $("passwordInput").value;
+  const email =
+    $("emailInput")
+      .value
+      .trim();
+
+  const password =
+    $("passwordInput")
+      .value;
+
 
   if(!email || !password){
+
     $("authError").textContent =
       "Please enter your email and password";
 
-    $("authError").classList.remove("hidden");
+    $("authError")
+      .classList
+      .remove("hidden");
+
     return;
+
   }
+
 
   try{
 
@@ -1915,31 +3097,50 @@ async function loginEmail(){
 
 
 /* =========================================================
-   AUTH - REGISTER
+   EMAIL REGISTER
 ========================================================= */
 
 async function registerEmail(){
 
   clearAuthError();
 
-  const email = $("emailInput").value.trim();
-  const password = $("passwordInput").value;
+  const email =
+    $("emailInput")
+      .value
+      .trim();
+
+  const password =
+    $("passwordInput")
+      .value;
+
 
   if(!email || !password){
+
     $("authError").textContent =
       "Please enter email and password";
 
-    $("authError").classList.remove("hidden");
+    $("authError")
+      .classList
+      .remove("hidden");
+
     return;
+
   }
 
+
   if(password.length < 6){
+
     $("authError").textContent =
       "Password must be at least 6 characters";
 
-    $("authError").classList.remove("hidden");
+    $("authError")
+      .classList
+      .remove("hidden");
+
     return;
+
   }
+
 
   try{
 
@@ -1950,12 +3151,15 @@ async function registerEmail(){
         password
       );
 
+
     await updateProfile(
       credential.user,
       {
-        displayName:email.split("@")[0]
+        displayName:
+          email.split("@")[0]
       }
     );
+
 
   }catch(error){
 
@@ -1974,21 +3178,37 @@ async function forgotPassword(){
 
   clearAuthError();
 
-  const email = $("emailInput").value.trim();
+  const email =
+    $("emailInput")
+      .value
+      .trim();
+
 
   if(!email){
+
     $("authError").textContent =
       "Enter your email address first";
 
-    $("authError").classList.remove("hidden");
+    $("authError")
+      .classList
+      .remove("hidden");
+
     return;
+
   }
+
 
   try{
 
-    await sendPasswordResetEmail(auth,email);
+    await sendPasswordResetEmail(
+      auth,
+      email
+    );
 
-    showToast("Password reset email sent");
+    showToast(
+      "Password reset email sent"
+    );
+
 
   }catch(error){
 
@@ -2000,57 +3220,126 @@ async function forgotPassword(){
 
 
 /* =========================================================
-   BUSINESS INITIALIZATION
+   ENSURE BUSINESS
 ========================================================= */
 
 async function ensureBusiness(user){
 
-  const userRef = doc(db,"users",user.uid);
-  const userSnap = await getDoc(userRef);
+  const userRef =
+    doc(
+      db,
+      "users",
+      user.uid
+    );
+
+
+  const userSnap =
+    await getDoc(userRef);
+
 
   if(userSnap.exists()){
 
-    const profile = userSnap.data();
+    const profile =
+      userSnap.data();
 
-    businessId = profile.businessId;
+
+    businessId =
+      profile.businessId;
+
 
     if(!businessId){
+
       throw new Error(
         "User account exists but businessId is missing"
       );
+
     }
+
 
     return;
 
   }
 
-  businessId = "biz_" + user.uid;
+
+  businessId =
+    "biz_" +
+    user.uid;
+
+
+  /*
+    IMPORTANT:
+    Create business first
+    because users rule may depend
+    on the business document existing
+  */
 
   await setDoc(
+
     businessRef(),
+
     {
-      ownerUid:user.uid,
-      name:"My SME Business",
-      phone:"",
-      address:"",
-      currency:"MMK",
-      invoiceFooter:"Thank you for your business",
-      createdAt:serverTimestamp()
+
+      ownerUid:
+        user.uid,
+
+      name:
+        "My SME Business",
+
+      phone:
+        "",
+
+      address:
+        "",
+
+      currency:
+        "MMK",
+
+      invoiceFooter:
+        "Thank you for your business",
+
+      createdAt:
+        serverTimestamp()
+
     },
-    {merge:true}
+
+    {
+      merge:true
+    }
+
   );
 
+
   await setDoc(
+
     userRef,
+
     {
-      uid:user.uid,
-      email:user.email || "",
-      name:user.displayName || "Business Owner",
-      role:"Owner",
-      businessId:businessId,
-      createdAt:serverTimestamp()
+
+      uid:
+        user.uid,
+
+      email:
+        user.email || "",
+
+      name:
+        user.displayName ||
+        "Business Owner",
+
+      role:
+        "Owner",
+
+      businessId:
+        businessId,
+
+      createdAt:
+        serverTimestamp()
+
     },
-    {merge:true}
+
+    {
+      merge:true
+    }
+
   );
 
 }
@@ -2066,25 +3355,50 @@ async function loadBusiness(){
     return;
   }
 
-  const snap = await getDoc(businessRef());
+
+  const snap =
+    await getDoc(
+      businessRef()
+    );
+
 
   if(snap.exists()){
 
-    const b = snap.data();
+    const b =
+      snap.data();
+
 
     data.settings = {
+
       ...data.settings,
-      businessName:b.name || "My SME Business",
-      phone:b.phone || "",
-      address:b.address || "",
-      currency:b.currency || "MMK",
-      invoiceFooter:b.invoiceFooter ||
+
+      businessName:
+        b.name ||
+        "My SME Business",
+
+      phone:
+        b.phone ||
+        "",
+
+      address:
+        b.address ||
+        "",
+
+      currency:
+        b.currency ||
+        "MMK",
+
+      invoiceFooter:
+        b.invoiceFooter ||
         "Thank you for your business"
+
     };
 
   }
 
+
   const collections = [
+
     "products",
     "sales",
     "purchases",
@@ -2092,23 +3406,37 @@ async function loadBusiness(){
     "suppliers",
     "expenses",
     "cashTransactions"
+
   ];
 
-  for(const name of collections){
+
+  for(
+    const name of collections
+  ){
 
     const snapData =
-      await getDocs(subCollection(name));
+      await getDocs(
+        subCollection(name)
+      );
+
 
     data[name] = [];
 
+
     snapData.forEach(item=>{
+
       data[name].push({
+
         id:item.id,
+
         ...item.data()
+
       });
+
     });
 
   }
+
 
   renderAll();
 
@@ -2116,26 +3444,47 @@ async function loadBusiness(){
 
 
 /* =========================================================
-   SAVE COLLECTION ITEM
+   SAVE ITEM
 ========================================================= */
 
-async function saveItem(collectionName,item){
+async function saveItem(
+  collectionName,
+  item
+){
 
-  const ref = doc(
-    db,
-    "businesses",
-    businessId,
-    collectionName,
-    item.id
-  );
+  const ref =
+    doc(
+
+      db,
+
+      "businesses",
+
+      businessId,
+
+      collectionName,
+
+      item.id
+
+    );
+
 
   await setDoc(
+
     ref,
+
     {
+
       ...item,
-      updatedAt:serverTimestamp()
+
+      updatedAt:
+        serverTimestamp()
+
     },
-    {merge:true}
+
+    {
+      merge:true
+    }
+
   );
 
 }
@@ -2146,47 +3495,100 @@ async function saveItem(collectionName,item){
 ========================================================= */
 
 const pageNames = {
-  dashboard:"Dashboard",
-  sales:"Sales",
-  purchases:"Purchases",
-  products:"Products",
-  inventory:"Inventory",
-  customers:"Customers",
-  receivables:"Receivables",
-  suppliers:"Suppliers",
-  payables:"Payables",
-  expenses:"Expenses",
-  cashbook:"Cashbook",
-  reports:"Reports",
-  users:"Users & Permissions",
-  settings:"Settings"
+
+  dashboard:
+    "Dashboard",
+
+  sales:
+    "Sales",
+
+  purchases:
+    "Purchases",
+
+  products:
+    "Products",
+
+  inventory:
+    "Inventory",
+
+  customers:
+    "Customers",
+
+  receivables:
+    "Receivables",
+
+  suppliers:
+    "Suppliers",
+
+  payables:
+    "Payables",
+
+  expenses:
+    "Expenses",
+
+  cashbook:
+    "Cashbook",
+
+  reports:
+    "Reports",
+
+  users:
+    "Users & Permissions",
+
+  settings:
+    "Settings"
+
 };
+
 
 function openPage(page){
 
-  document.querySelectorAll(".page")
+  document
+    .querySelectorAll(".page")
     .forEach(el=>{
-      el.classList.remove("active");
+
+      el.classList
+        .remove("active");
+
     });
 
-  const target = $("page-"+page);
+
+  const target =
+    $("page-" + page);
+
 
   if(target){
-    target.classList.add("active");
+
+    target.classList
+      .add("active");
+
   }
 
-  document.querySelectorAll(".nav-btn[data-page]")
+
+  document
+    .querySelectorAll(
+      ".nav-btn[data-page]"
+    )
     .forEach(btn=>{
+
       btn.classList.toggle(
+
         "active",
+
         btn.dataset.page === page
+
       );
+
     });
 
+
   $("pageTitle").textContent =
-    pageNames[page] || "Dashboard";
+    pageNames[page] ||
+    "Dashboard";
+
 
   closeMobileMenu();
+
 
   renderPage(page);
 
@@ -2194,23 +3596,35 @@ function openPage(page){
 
 
 /* =========================================================
-   RENDER
+   RENDER ALL
 ========================================================= */
 
 function renderAll(){
 
   renderDashboard();
+
   renderSales();
+
   renderPurchases();
+
   renderProducts();
+
   renderInventory();
+
   renderCustomers();
+
   renderReceivables();
+
   renderSuppliers();
+
   renderPayables();
+
   renderExpenses();
+
   renderCashbook();
+
   renderReports();
+
   renderSettings();
 
 }
@@ -2224,46 +3638,93 @@ function renderDashboard(){
 
   const sales =
     data.sales.reduce(
-      (sum,x)=>sum + Number(x.total || 0),
+
+      (sum,x)=>
+        sum +
+        Number(x.total || 0),
+
       0
+
     );
+
 
   const purchases =
     data.purchases.reduce(
-      (sum,x)=>sum + Number(x.total || 0),
+
+      (sum,x)=>
+        sum +
+        Number(x.total || 0),
+
       0
+
     );
+
 
   const receivable =
     data.sales.reduce(
-      (sum,x)=>sum + Number(x.balance || 0),
+
+      (sum,x)=>
+        sum +
+        Number(x.balance || 0),
+
       0
+
     );
 
-  $("dashSales").textContent = money(sales);
-  $("dashPurchases").textContent = money(purchases);
-  $("dashReceivable").textContent = money(receivable);
-  $("dashProducts").textContent = data.products.length;
+
+  $("dashSales").textContent =
+    money(sales);
+
+  $("dashPurchases").textContent =
+    money(purchases);
+
+  $("dashReceivable").textContent =
+    money(receivable);
+
+  $("dashProducts").textContent =
+    data.products.length;
+
 
   const name =
+
     currentUser?.displayName ||
-    currentUser?.email?.split("@")[0] ||
+
+    currentUser?.email
+      ?.split("@")[0] ||
+
     "Business Owner";
 
-  $("welcomeText").textContent =
-    "Welcome back, " + name;
 
-  $("profileName").textContent = name;
+  $("welcomeText").textContent =
+    "Welcome back, " +
+    name;
+
+
+  $("profileName").textContent =
+    name;
+
+
   $("profileEmail").textContent =
-    currentUser?.email || "";
+    currentUser?.email ||
+    "";
+
 
   $("avatar").textContent =
-    name.substring(0,2).toUpperCase();
+    name
+      .substring(0,2)
+      .toUpperCase();
+
 
   $("dashAccountType").textContent =
-    currentUser?.providerData?.[0]?.providerId ===
+
+    currentUser
+      ?.providerData
+      ?.[0]
+      ?.providerId ===
     "google.com"
+
       ? "Google Account"
+
       : "Email Account";
 
 }
@@ -2276,49 +3737,124 @@ function renderDashboard(){
 function renderSales(){
 
   const search =
-    ($("salesSearch")?.value || "")
+
+    (
+      $("salesSearch")
+        ?.value ||
+      ""
+    )
       .trim()
       .toLowerCase();
 
-  const rows = data.sales
-    .filter(x=>{
-      const text =
-        `${x.invoice || ""} ${x.customerName || ""}`
-          .toLowerCase();
 
-      return !search || text.includes(search);
-    })
-    .sort((a,b)=>
-      String(b.date || "").localeCompare(
-        String(a.date || "")
-      )
-    );
+  const rows =
+
+    data.sales
+
+      .filter(x=>{
+
+        const text =
+
+          `${x.invoice || ""} ${x.customerName || ""}`
+            .toLowerCase();
+
+
+        return (
+          !search ||
+          text.includes(search)
+        );
+
+      })
+
+      .sort((a,b)=>
+
+        String(
+          b.date || ""
+        ).localeCompare(
+
+          String(
+            a.date || ""
+          )
+
+        )
+
+      );
+
 
   $("salesTable").innerHTML =
+
     rows.length
+
       ? rows.map(x=>`
+
         <tr>
-          <td>${esc(x.invoice)}</td>
-          <td>${esc(x.date)}</td>
-          <td>${esc(x.customerName || "Walk-in Customer")}</td>
-          <td>${money(x.total)}</td>
-          <td>${esc(x.payment || "Cash")}</td>
+
           <td>
+            ${esc(x.invoice)}
+          </td>
+
+          <td>
+            ${esc(x.date)}
+          </td>
+
+          <td>
+            ${esc(
+              x.customerName ||
+              "Walk-in Customer"
+            )}
+          </td>
+
+          <td>
+            ${money(x.total)}
+          </td>
+
+          <td>
+            ${esc(
+              x.payment ||
+              "Cash"
+            )}
+          </td>
+
+          <td>
+
             <span class="badge ${
-              Number(x.balance || 0)>0
+              Number(x.balance || 0) > 0
+
                 ? "badge-orange"
+
                 : "badge-green"
             }">
+
               ${
-                Number(x.balance || 0)>0
+                Number(x.balance || 0) > 0
+
                   ? "CREDIT"
+
                   : "PAID"
               }
+
             </span>
+
           </td>
+
         </tr>
+
       `).join("")
-      : `<tr><td colspan="6" class="empty">No sales records</td></tr>`;
+
+      : `
+
+        <tr>
+
+          <td
+            colspan="6"
+            class="empty"
+          >
+            No sales records
+          </td>
+
+        </tr>
+
+      `;
 
 }
 
@@ -2330,49 +3866,124 @@ function renderSales(){
 function renderPurchases(){
 
   const search =
-    ($("purchaseSearch")?.value || "")
+
+    (
+      $("purchaseSearch")
+        ?.value ||
+      ""
+    )
       .trim()
       .toLowerCase();
 
-  const rows = data.purchases
-    .filter(x=>{
-      const text =
-        `${x.invoice || ""} ${x.supplierName || ""}`
-          .toLowerCase();
 
-      return !search || text.includes(search);
-    })
-    .sort((a,b)=>
-      String(b.date || "").localeCompare(
-        String(a.date || "")
-      )
-    );
+  const rows =
+
+    data.purchases
+
+      .filter(x=>{
+
+        const text =
+
+          `${x.invoice || ""} ${x.supplierName || ""}`
+            .toLowerCase();
+
+
+        return (
+          !search ||
+          text.includes(search)
+        );
+
+      })
+
+      .sort((a,b)=>
+
+        String(
+          b.date || ""
+        ).localeCompare(
+
+          String(
+            a.date || ""
+          )
+
+        )
+
+      );
+
 
   $("purchasesTable").innerHTML =
+
     rows.length
+
       ? rows.map(x=>`
+
         <tr>
-          <td>${esc(x.invoice)}</td>
-          <td>${esc(x.date)}</td>
-          <td>${esc(x.supplierName || "Supplier")}</td>
-          <td>${money(x.total)}</td>
-          <td>${esc(x.payment || "Cash")}</td>
+
           <td>
+            ${esc(x.invoice)}
+          </td>
+
+          <td>
+            ${esc(x.date)}
+          </td>
+
+          <td>
+            ${esc(
+              x.supplierName ||
+              "Supplier"
+            )}
+          </td>
+
+          <td>
+            ${money(x.total)}
+          </td>
+
+          <td>
+            ${esc(
+              x.payment ||
+              "Cash"
+            )}
+          </td>
+
+          <td>
+
             <span class="badge ${
-              Number(x.balance || 0)>0
+              Number(x.balance || 0) > 0
+
                 ? "badge-orange"
+
                 : "badge-green"
             }">
+
               ${
-                Number(x.balance || 0)>0
+                Number(x.balance || 0) > 0
+
                   ? "CREDIT"
+
                   : "PAID"
               }
+
             </span>
+
           </td>
+
         </tr>
+
       `).join("")
-      : `<tr><td colspan="6" class="empty">No purchase records</td></tr>`;
+
+      : `
+
+        <tr>
+
+          <td
+            colspan="6"
+            class="empty"
+          >
+            No purchase records
+          </td>
+
+        </tr>
+
+      `;
 
 }
 
@@ -2384,30 +3995,88 @@ function renderPurchases(){
 function renderProducts(){
 
   const search =
-    ($("productSearch")?.value || "")
+
+    (
+      $("productSearch")
+        ?.value ||
+      ""
+    )
       .trim()
       .toLowerCase();
 
-  const rows = data.products.filter(x=>
-    !search ||
-    String(x.name || "")
-      .toLowerCase()
-      .includes(search)
-  );
+
+  const rows =
+    data.products.filter(x=>
+
+      !search ||
+
+      String(x.name || "")
+        .toLowerCase()
+        .includes(search)
+
+    );
+
 
   $("productsTable").innerHTML =
+
     rows.length
+
       ? rows.map(x=>`
+
         <tr>
-          <td><strong>${esc(x.name)}</strong></td>
-          <td>${esc(x.category || "-")}</td>
-          <td>${esc(x.unit || "pcs")}</td>
-          <td>${money(x.cost)}</td>
-          <td>${money(x.price)}</td>
-          <td>${Number(x.stock || 0).toLocaleString()}</td>
+
+          <td>
+            <strong>
+              ${esc(x.name)}
+            </strong>
+          </td>
+
+          <td>
+            ${esc(
+              x.category ||
+              "-"
+            )}
+          </td>
+
+          <td>
+            ${esc(
+              x.unit ||
+              "pcs"
+            )}
+          </td>
+
+          <td>
+            ${money(x.cost)}
+          </td>
+
+          <td>
+            ${money(x.price)}
+          </td>
+
+          <td>
+            ${Number(
+              x.stock || 0
+            ).toLocaleString()}
+          </td>
+
         </tr>
+
       `).join("")
-      : `<tr><td colspan="6" class="empty">No products</td></tr>`;
+
+      : `
+
+        <tr>
+
+          <td
+            colspan="6"
+            class="empty"
+          >
+            No products
+          </td>
+
+        </tr>
+
+      `;
 
 }
 
@@ -2419,66 +4088,149 @@ function renderProducts(){
 function renderInventory(){
 
   const totalStock =
-    data.products.reduce(
-      (sum,x)=>sum + Number(x.stock || 0),
-      0
-    );
 
-  const lowStock =
-    data.products.filter(
-      x=>Number(x.stock || 0) <= Number(x.lowStock || 5)
-    ).length;
-
-  const stockValue =
     data.products.reduce(
+
       (sum,x)=>
         sum +
-        Number(x.stock || 0) *
-        Number(x.cost || 0),
+        Number(x.stock || 0),
+
       0
+
     );
+
+
+  const lowStock =
+
+    data.products.filter(
+
+      x=>
+        Number(x.stock || 0) <=
+        Number(x.lowStock || 5)
+
+    ).length;
+
+
+  const stockValue =
+
+    data.products.reduce(
+
+      (sum,x)=>
+
+        sum +
+
+        Number(x.stock || 0) *
+
+        Number(x.cost || 0),
+
+      0
+
+    );
+
 
   $("invProducts").textContent =
     data.products.length;
 
+
   $("invStock").textContent =
     totalStock.toLocaleString();
+
 
   $("invLow").textContent =
     lowStock;
 
+
   $("invValue").textContent =
     money(stockValue);
 
+
   $("inventoryTable").innerHTML =
+
     data.products.length
+
       ? data.products.map(x=>{
+
           const stock =
             Number(x.stock || 0);
 
+
           const low =
-            stock <= Number(x.lowStock || 5);
+            stock <=
+            Number(
+              x.lowStock || 5
+            );
+
 
           return `
+
             <tr>
-              <td>${esc(x.name)}</td>
-              <td>${esc(x.unit || "pcs")}</td>
-              <td>${stock.toLocaleString()}</td>
-              <td>${money(x.cost)}</td>
-              <td>${money(stock * Number(x.cost || 0))}</td>
+
               <td>
+                ${esc(x.name)}
+              </td>
+
+              <td>
+                ${esc(
+                  x.unit ||
+                  "pcs"
+                )}
+              </td>
+
+              <td>
+                ${stock.toLocaleString()}
+              </td>
+
+              <td>
+                ${money(x.cost)}
+              </td>
+
+              <td>
+                ${money(
+                  stock *
+                  Number(x.cost || 0)
+                )}
+              </td>
+
+              <td>
+
                 <span class="badge ${
                   low
+
                     ? "badge-orange"
+
                     : "badge-green"
                 }">
-                  ${low ? "LOW STOCK" : "OK"}
+
+                  ${
+                    low
+                      ? "LOW STOCK"
+                      : "OK"
+                  }
+
                 </span>
+
               </td>
+
             </tr>
+
           `;
+
         }).join("")
-      : `<tr><td colspan="6" class="empty">No inventory</td></tr>`;
+
+      : `
+
+        <tr>
+
+          <td
+            colspan="6"
+            class="empty"
+          >
+            No inventory
+          </td>
+
+        </tr>
+
+      `;
 
 }
 
@@ -2490,41 +4242,107 @@ function renderInventory(){
 function renderCustomers(){
 
   const search =
-    ($("customerSearch")?.value || "")
+
+    (
+      $("customerSearch")
+        ?.value ||
+      ""
+    )
       .trim()
       .toLowerCase();
 
-  const rows = data.customers.filter(x=>
-    !search ||
-    `${x.name || ""} ${x.phone || ""}`
-      .toLowerCase()
-      .includes(search)
-  );
+
+  const rows =
+    data.customers.filter(x=>
+
+      !search ||
+
+      `${x.name || ""} ${x.phone || ""}`
+        .toLowerCase()
+        .includes(search)
+
+    );
+
 
   $("customersTable").innerHTML =
+
     rows.length
+
       ? rows.map(x=>{
 
           const due =
+
             data.sales
-              .filter(s=>s.customerId === x.id)
+
+              .filter(
+                s=>
+                  s.customerId ===
+                  x.id
+              )
+
               .reduce(
+
                 (sum,s)=>
-                  sum + Number(s.balance || 0),
+                  sum +
+                  Number(
+                    s.balance || 0
+                  ),
+
                 0
+
               );
 
+
           return `
+
             <tr>
-              <td><strong>${esc(x.name)}</strong></td>
-              <td>${esc(x.phone || "-")}</td>
-              <td>${esc(x.address || "-")}</td>
-              <td>${money(due)}</td>
+
+              <td>
+
+                <strong>
+                  ${esc(x.name)}
+                </strong>
+
+              </td>
+
+              <td>
+                ${esc(
+                  x.phone ||
+                  "-"
+                )}
+              </td>
+
+              <td>
+                ${esc(
+                  x.address ||
+                  "-"
+                )}
+              </td>
+
+              <td>
+                ${money(due)}
+              </td>
+
             </tr>
+
           `;
 
         }).join("")
-      : `<tr><td colspan="4" class="empty">No customers</td></tr>`;
+
+      : `
+
+        <tr>
+
+          <td
+            colspan="4"
+            class="empty"
+          >
+            No customers
+          </td>
+
+        </tr>
+
+      `;
 
 }
 
@@ -2536,32 +4354,89 @@ function renderCustomers(){
 function renderReceivables(){
 
   const rows =
+
     data.sales.filter(
-      x=>Number(x.balance || 0)>0
+
+      x=>
+        Number(
+          x.balance || 0
+        ) > 0
+
     );
 
+
   const total =
+
     rows.reduce(
-      (sum,x)=>sum + Number(x.balance || 0),
+
+      (sum,x)=>
+        sum +
+        Number(
+          x.balance || 0
+        ),
+
       0
+
     );
+
 
   $("receivableTotal").textContent =
     money(total);
 
+
   $("receivablesTable").innerHTML =
+
     rows.length
+
       ? rows.map(x=>`
+
         <tr>
-          <td>${esc(x.customerName || "-")}</td>
-          <td>${esc(x.invoice)}</td>
-          <td>${esc(x.date)}</td>
-          <td>${money(x.total)}</td>
-          <td>${money(x.paid)}</td>
-          <td>${money(x.balance)}</td>
+
+          <td>
+            ${esc(
+              x.customerName ||
+              "-"
+            )}
+          </td>
+
+          <td>
+            ${esc(x.invoice)}
+          </td>
+
+          <td>
+            ${esc(x.date)}
+          </td>
+
+          <td>
+            ${money(x.total)}
+          </td>
+
+          <td>
+            ${money(x.paid)}
+          </td>
+
+          <td>
+            ${money(x.balance)}
+          </td>
+
         </tr>
+
       `).join("")
-      : `<tr><td colspan="6" class="empty">No outstanding receivables</td></tr>`;
+
+      : `
+
+        <tr>
+
+          <td
+            colspan="6"
+            class="empty"
+          >
+            No outstanding receivables
+          </td>
+
+        </tr>
+
+      `;
 
 }
 
@@ -2573,41 +4448,107 @@ function renderReceivables(){
 function renderSuppliers(){
 
   const search =
-    ($("supplierSearch")?.value || "")
+
+    (
+      $("supplierSearch")
+        ?.value ||
+      ""
+    )
       .trim()
       .toLowerCase();
 
-  const rows = data.suppliers.filter(x=>
-    !search ||
-    `${x.name || ""} ${x.phone || ""}`
-      .toLowerCase()
-      .includes(search)
-  );
+
+  const rows =
+    data.suppliers.filter(x=>
+
+      !search ||
+
+      `${x.name || ""} ${x.phone || ""}`
+        .toLowerCase()
+        .includes(search)
+
+    );
+
 
   $("suppliersTable").innerHTML =
+
     rows.length
+
       ? rows.map(x=>{
 
           const due =
+
             data.purchases
-              .filter(p=>p.supplierId === x.id)
+
+              .filter(
+                p=>
+                  p.supplierId ===
+                  x.id
+              )
+
               .reduce(
+
                 (sum,p)=>
-                  sum + Number(p.balance || 0),
+                  sum +
+                  Number(
+                    p.balance || 0
+                  ),
+
                 0
+
               );
 
+
           return `
+
             <tr>
-              <td><strong>${esc(x.name)}</strong></td>
-              <td>${esc(x.phone || "-")}</td>
-              <td>${esc(x.address || "-")}</td>
-              <td>${money(due)}</td>
+
+              <td>
+
+                <strong>
+                  ${esc(x.name)}
+                </strong>
+
+              </td>
+
+              <td>
+                ${esc(
+                  x.phone ||
+                  "-"
+                )}
+              </td>
+
+              <td>
+                ${esc(
+                  x.address ||
+                  "-"
+                )}
+              </td>
+
+              <td>
+                ${money(due)}
+              </td>
+
             </tr>
+
           `;
 
         }).join("")
-      : `<tr><td colspan="4" class="empty">No suppliers</td></tr>`;
+
+      : `
+
+        <tr>
+
+          <td
+            colspan="4"
+            class="empty"
+          >
+            No suppliers
+          </td>
+
+        </tr>
+
+      `;
 
 }
 
@@ -2619,32 +4560,89 @@ function renderSuppliers(){
 function renderPayables(){
 
   const rows =
+
     data.purchases.filter(
-      x=>Number(x.balance || 0)>0
+
+      x=>
+        Number(
+          x.balance || 0
+        ) > 0
+
     );
 
+
   const total =
+
     rows.reduce(
-      (sum,x)=>sum + Number(x.balance || 0),
+
+      (sum,x)=>
+        sum +
+        Number(
+          x.balance || 0
+        ),
+
       0
+
     );
+
 
   $("payableTotal").textContent =
     money(total);
 
+
   $("payablesTable").innerHTML =
+
     rows.length
+
       ? rows.map(x=>`
+
         <tr>
-          <td>${esc(x.supplierName || "-")}</td>
-          <td>${esc(x.invoice)}</td>
-          <td>${esc(x.date)}</td>
-          <td>${money(x.total)}</td>
-          <td>${money(x.paid)}</td>
-          <td>${money(x.balance)}</td>
+
+          <td>
+            ${esc(
+              x.supplierName ||
+              "-"
+            )}
+          </td>
+
+          <td>
+            ${esc(x.invoice)}
+          </td>
+
+          <td>
+            ${esc(x.date)}
+          </td>
+
+          <td>
+            ${money(x.total)}
+          </td>
+
+          <td>
+            ${money(x.paid)}
+          </td>
+
+          <td>
+            ${money(x.balance)}
+          </td>
+
         </tr>
+
       `).join("")
-      : `<tr><td colspan="6" class="empty">No outstanding payables</td></tr>`;
+
+      : `
+
+        <tr>
+
+          <td
+            colspan="6"
+            class="empty"
+          >
+            No outstanding payables
+          </td>
+
+        </tr>
+
+      `;
 
 }
 
@@ -2656,21 +4654,69 @@ function renderPayables(){
 function renderExpenses(){
 
   $("expensesTable").innerHTML =
+
     data.expenses.length
-      ? data.expenses
-        .sort((a,b)=>
-          String(b.date || "")
-            .localeCompare(String(a.date || ""))
-        )
-        .map(x=>`
-          <tr>
-            <td>${esc(x.date)}</td>
-            <td>${esc(x.category || "-")}</td>
-            <td>${esc(x.description || "-")}</td>
-            <td>${money(x.amount)}</td>
-          </tr>
-        `).join("")
-      : `<tr><td colspan="4" class="empty">No expenses</td></tr>`;
+
+      ? [...data.expenses]
+
+          .sort((a,b)=>
+
+            String(
+              b.date || ""
+            ).localeCompare(
+
+              String(
+                a.date || ""
+              )
+
+            )
+
+          )
+
+          .map(x=>`
+
+            <tr>
+
+              <td>
+                ${esc(x.date)}
+              </td>
+
+              <td>
+                ${esc(
+                  x.category ||
+                  "-"
+                )}
+              </td>
+
+              <td>
+                ${esc(
+                  x.description ||
+                  "-"
+                )}
+              </td>
+
+              <td>
+                ${money(x.amount)}
+              </td>
+
+            </tr>
+
+          `).join("")
+
+      : `
+
+        <tr>
+
+          <td
+            colspan="4"
+            class="empty"
+          >
+            No expenses
+          </td>
+
+        </tr>
+
+      `;
 
 }
 
@@ -2682,55 +4728,148 @@ function renderExpenses(){
 function renderCashbook(){
 
   const cashIn =
+
     data.cashTransactions
-      .filter(x=>x.direction === "in")
+
+      .filter(
+        x=>
+          x.direction ===
+          "in"
+      )
+
       .reduce(
-        (sum,x)=>sum + Number(x.amount || 0),
+
+        (sum,x)=>
+          sum +
+          Number(
+            x.amount || 0
+          ),
+
         0
+
       );
 
+
   const cashOut =
+
     data.cashTransactions
-      .filter(x=>x.direction === "out")
+
+      .filter(
+        x=>
+          x.direction ===
+          "out"
+      )
+
       .reduce(
-        (sum,x)=>sum + Number(x.amount || 0),
+
+        (sum,x)=>
+          sum +
+          Number(
+            x.amount || 0
+          ),
+
         0
+
       );
+
 
   $("cashIn").textContent =
     money(cashIn);
 
+
   $("cashOut").textContent =
     money(cashOut);
 
+
   $("cashNet").textContent =
-    money(cashIn-cashOut);
+    money(
+      cashIn -
+      cashOut
+    );
+
 
   $("cashbookTable").innerHTML =
+
     data.cashTransactions.length
-      ? data.cashTransactions
-        .sort((a,b)=>
-          String(b.date || "")
-            .localeCompare(String(a.date || ""))
-        )
-        .map(x=>`
-          <tr>
-            <td>${esc(x.date)}</td>
-            <td>${esc(x.type || "-")}</td>
-            <td>${esc(x.description || "-")}</td>
-            <td>
-              <span class="badge ${
-                x.direction === "in"
-                  ? "badge-green"
-                  : "badge-red"
-              }">
-                ${x.direction === "in" ? "+" : "-"}
-                ${money(x.amount)}
-              </span>
-            </td>
-          </tr>
-        `).join("")
-      : `<tr><td colspan="4" class="empty">No cash transactions</td></tr>`;
+
+      ? [...data.cashTransactions]
+
+          .sort((a,b)=>
+
+            String(
+              b.date || ""
+            ).localeCompare(
+
+              String(
+                a.date || ""
+              )
+
+            )
+
+          )
+
+          .map(x=>`
+
+            <tr>
+
+              <td>
+                ${esc(x.date)}
+              </td>
+
+              <td>
+                ${esc(
+                  x.type ||
+                  "-"
+                )}
+              </td>
+
+              <td>
+                ${esc(
+                  x.description ||
+                  "-"
+                )}
+              </td>
+
+              <td>
+
+                <span class="badge ${
+                  x.direction === "in"
+
+                    ? "badge-green"
+
+                    : "badge-red"
+                }">
+
+                  ${
+                    x.direction === "in"
+                      ? "+"
+                      : "-"
+                  }
+
+                  ${money(x.amount)}
+
+                </span>
+
+              </td>
+
+            </tr>
+
+          `).join("")
+
+      : `
+
+        <tr>
+
+          <td
+            colspan="4"
+            class="empty"
+          >
+            No cash transactions
+          </td>
+
+        </tr>
+
+      `;
 
 }
 
@@ -2741,20 +4880,37 @@ function renderCashbook(){
 
 function renderReports(){
 
-  let revenue = 0;
-  let cogs = 0;
+  let revenue =
+    0;
+
+  let cogs =
+    0;
+
 
   data.sales.forEach(s=>{
 
-    revenue += Number(s.total || 0);
+    revenue +=
+      Number(
+        s.total || 0
+      );
 
-    if(Array.isArray(s.items)){
+
+    if(
+      Array.isArray(s.items)
+    ){
 
       s.items.forEach(item=>{
 
         cogs +=
-          Number(item.qty || 0) *
-          Number(item.costAtSale || 0);
+
+          Number(
+            item.qty || 0
+          ) *
+
+          Number(
+            item.costAtSale ||
+            0
+          );
 
       });
 
@@ -2762,26 +4918,47 @@ function renderReports(){
 
   });
 
+
   const expenses =
+
     data.expenses.reduce(
-      (sum,x)=>sum + Number(x.amount || 0),
+
+      (sum,x)=>
+        sum +
+        Number(
+          x.amount || 0
+        ),
+
       0
+
     );
 
-  const gross = revenue - cogs;
-  const net = gross - expenses;
+
+  const gross =
+    revenue -
+    cogs;
+
+
+  const net =
+    gross -
+    expenses;
+
 
   $("reportRevenue").textContent =
     money(revenue);
 
+
   $("reportCOGS").textContent =
     money(cogs);
+
 
   $("reportGross").textContent =
     money(gross);
 
+
   $("reportExpenses").textContent =
     money(expenses);
+
 
   $("netProfitBox").textContent =
     money(net);
@@ -2796,30 +4973,47 @@ function renderReports(){
 function renderSettings(){
 
   $("settingBusinessName").value =
-    data.settings.businessName || "";
+    data.settings.businessName ||
+    "";
+
 
   $("settingPhone").value =
-    data.settings.phone || "";
+    data.settings.phone ||
+    "";
+
 
   $("settingAddress").value =
-    data.settings.address || "";
+    data.settings.address ||
+    "";
+
 
   $("settingCurrency").value =
-    data.settings.currency || "MMK";
+    data.settings.currency ||
+    "MMK";
+
 
   $("settingFooter").value =
-    data.settings.invoiceFooter || "";
+    data.settings.invoiceFooter ||
+    "";
+
 
   $("settingsEmail").textContent =
-    currentUser?.email || "";
+    currentUser?.email ||
+    "";
+
 
   $("userDisplayName").textContent =
+
     currentUser?.displayName ||
+
     currentUser?.email ||
+
     "Business Owner";
 
+
   $("userDisplayEmail").textContent =
-    currentUser?.email || "";
+    currentUser?.email ||
+    "";
 
 }
 
@@ -2830,19 +5024,44 @@ function renderSettings(){
 
 function renderPage(page){
 
-  if(page === "dashboard") renderDashboard();
-  if(page === "sales") renderSales();
-  if(page === "purchases") renderPurchases();
-  if(page === "products") renderProducts();
-  if(page === "inventory") renderInventory();
-  if(page === "customers") renderCustomers();
-  if(page === "receivables") renderReceivables();
-  if(page === "suppliers") renderSuppliers();
-  if(page === "payables") renderPayables();
-  if(page === "expenses") renderExpenses();
-  if(page === "cashbook") renderCashbook();
-  if(page === "reports") renderReports();
-  if(page === "settings") renderSettings();
+  if(page === "dashboard")
+    renderDashboard();
+
+  if(page === "sales")
+    renderSales();
+
+  if(page === "purchases")
+    renderPurchases();
+
+  if(page === "products")
+    renderProducts();
+
+  if(page === "inventory")
+    renderInventory();
+
+  if(page === "customers")
+    renderCustomers();
+
+  if(page === "receivables")
+    renderReceivables();
+
+  if(page === "suppliers")
+    renderSuppliers();
+
+  if(page === "payables")
+    renderPayables();
+
+  if(page === "expenses")
+    renderExpenses();
+
+  if(page === "cashbook")
+    renderCashbook();
+
+  if(page === "reports")
+    renderReports();
+
+  if(page === "settings")
+    renderSettings();
 
 }
 
@@ -2851,46 +5070,74 @@ function renderPage(page){
    MODAL
 ========================================================= */
 
-function openModal(title,html,onSave){
+function openModal(
+  title,
+  html,
+  onSave
+){
 
-  $("modalTitle").textContent = title;
-  $("modalBody").innerHTML = html;
+  $("modalTitle").textContent =
+    title;
 
-  $("modal").classList.add("show");
 
-  $("modalSave").onclick = async ()=>{
+  $("modalBody").innerHTML =
+    html;
 
-    try{
 
-      await onSave();
+  $("modal").classList
+    .add("show");
 
-      closeModal();
 
-      await loadBusiness();
+  $("modalSave").onclick =
+    async ()=>{
 
-      showToast("Saved successfully");
+      try{
 
-    }catch(error){
+        await onSave();
 
-      console.error(error);
+        closeModal();
 
-      alert(
-        "Save failed\n\n" +
-        (error.code || "") +
-        "\n" +
-        (error.message || error)
-      );
+        await loadBusiness();
 
-    }
+        showToast(
+          "Saved successfully"
+        );
 
-  };
+
+      }catch(error){
+
+        console.error(
+          error
+        );
+
+
+        alert(
+
+          "Save failed\n\n" +
+
+          (error.code || "") +
+
+          "\n" +
+
+          (error.message || error)
+
+        );
+
+      }
+
+    };
 
 }
 
+
 function closeModal(){
 
-  $("modal").classList.remove("show");
-  $("modalBody").innerHTML = "";
+  $("modal").classList
+    .remove("show");
+
+
+  $("modalBody").innerHTML =
+    "";
 
 }
 
@@ -2902,66 +5149,177 @@ function closeModal(){
 function newProduct(){
 
   openModal(
+
     "Add Product",
+
     `
+
       <div class="form-grid">
 
         <div class="field">
-          <label>Product Name</label>
-          <input id="mProductName">
+
+          <label>
+            Product Name
+          </label>
+
+          <input
+            id="mProductName"
+          >
+
         </div>
 
-        <div class="field">
-          <label>Category</label>
-          <input id="mProductCategory">
-        </div>
 
         <div class="field">
-          <label>Unit</label>
-          <input id="mProductUnit" value="pcs">
+
+          <label>
+            Category
+          </label>
+
+          <input
+            id="mProductCategory"
+          >
+
         </div>
 
-        <div class="field">
-          <label>Cost</label>
-          <input id="mProductCost" type="number" min="0" value="0">
-        </div>
 
         <div class="field">
-          <label>Selling Price</label>
-          <input id="mProductPrice" type="number" min="0" value="0">
+
+          <label>
+            Unit
+          </label>
+
+          <input
+            id="mProductUnit"
+            value="pcs"
+          >
+
         </div>
 
+
         <div class="field">
-          <label>Opening Stock</label>
-          <input id="mProductStock" type="number" min="0" value="0">
+
+          <label>
+            Cost
+          </label>
+
+          <input
+            id="mProductCost"
+            type="number"
+            min="0"
+            value="0"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Selling Price
+          </label>
+
+          <input
+            id="mProductPrice"
+            type="number"
+            min="0"
+            value="0"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Opening Stock
+          </label>
+
+          <input
+            id="mProductStock"
+            type="number"
+            min="0"
+            value="0"
+          >
+
         </div>
 
       </div>
+
     `,
+
     async ()=>{
 
       const name =
-        $("mProductName").value.trim();
+        $("mProductName")
+          .value
+          .trim();
+
 
       if(!name){
-        throw new Error("Product name is required");
+
+        throw new Error(
+          "Product name is required"
+        );
+
       }
 
+
       const item = {
-        id:id("prod"),
-        name:name,
-        category:$("mProductCategory").value.trim(),
-        unit:$("mProductUnit").value.trim() || "pcs",
-        cost:Number($("mProductCost").value || 0),
-        price:Number($("mProductPrice").value || 0),
-        stock:Number($("mProductStock").value || 0),
-        lowStock:5,
-        createdAt:today()
+
+        id:
+          id("prod"),
+
+        name:
+          name,
+
+        category:
+          $("mProductCategory")
+            .value
+            .trim(),
+
+        unit:
+          $("mProductUnit")
+            .value
+            .trim() ||
+          "pcs",
+
+        cost:
+          Number(
+            $("mProductCost")
+              .value ||
+            0
+          ),
+
+        price:
+          Number(
+            $("mProductPrice")
+              .value ||
+            0
+          ),
+
+        stock:
+          Number(
+            $("mProductStock")
+              .value ||
+            0
+          ),
+
+        lowStock:
+          5,
+
+        createdAt:
+          today()
+
       };
 
-      await saveItem("products",item);
+
+      await saveItem(
+        "products",
+        item
+      );
 
     }
+
   );
 
 }
@@ -2974,48 +5332,104 @@ function newProduct(){
 function newCustomer(){
 
   openModal(
+
     "Add Customer",
+
     `
+
       <div class="form-grid">
 
         <div class="field">
-          <label>Customer Name</label>
-          <input id="mCustomerName">
+
+          <label>
+            Customer Name
+          </label>
+
+          <input
+            id="mCustomerName"
+          >
+
         </div>
+
 
         <div class="field">
-          <label>Phone</label>
-          <input id="mCustomerPhone">
+
+          <label>
+            Phone
+          </label>
+
+          <input
+            id="mCustomerPhone"
+          >
+
         </div>
 
+
         <div class="field full">
-          <label>Address</label>
-          <textarea id="mCustomerAddress" rows="3"></textarea>
+
+          <label>
+            Address
+          </label>
+
+          <textarea
+            id="mCustomerAddress"
+            rows="3"
+          ></textarea>
+
         </div>
 
       </div>
+
     `,
+
     async ()=>{
 
       const name =
-        $("mCustomerName").value.trim();
+        $("mCustomerName")
+          .value
+          .trim();
+
 
       if(!name){
-        throw new Error("Customer name is required");
+
+        throw new Error(
+          "Customer name is required"
+        );
+
       }
 
+
       await saveItem(
+
         "customers",
+
         {
-          id:id("cust"),
-          name:name,
-          phone:$("mCustomerPhone").value.trim(),
-          address:$("mCustomerAddress").value.trim(),
-          createdAt:today()
+
+          id:
+            id("cust"),
+
+          name:
+            name,
+
+          phone:
+            $("mCustomerPhone")
+              .value
+              .trim(),
+
+          address:
+            $("mCustomerAddress")
+              .value
+              .trim(),
+
+          createdAt:
+            today()
+
         }
+
       );
 
     }
+
   );
 
 }
@@ -3028,48 +5442,104 @@ function newCustomer(){
 function newSupplier(){
 
   openModal(
+
     "Add Supplier",
+
     `
+
       <div class="form-grid">
 
         <div class="field">
-          <label>Supplier Name</label>
-          <input id="mSupplierName">
+
+          <label>
+            Supplier Name
+          </label>
+
+          <input
+            id="mSupplierName"
+          >
+
         </div>
+
 
         <div class="field">
-          <label>Phone</label>
-          <input id="mSupplierPhone">
+
+          <label>
+            Phone
+          </label>
+
+          <input
+            id="mSupplierPhone"
+          >
+
         </div>
 
+
         <div class="field full">
-          <label>Address</label>
-          <textarea id="mSupplierAddress" rows="3"></textarea>
+
+          <label>
+            Address
+          </label>
+
+          <textarea
+            id="mSupplierAddress"
+            rows="3"
+          ></textarea>
+
         </div>
 
       </div>
+
     `,
+
     async ()=>{
 
       const name =
-        $("mSupplierName").value.trim();
+        $("mSupplierName")
+          .value
+          .trim();
+
 
       if(!name){
-        throw new Error("Supplier name is required");
+
+        throw new Error(
+          "Supplier name is required"
+        );
+
       }
 
+
       await saveItem(
+
         "suppliers",
+
         {
-          id:id("sup"),
-          name:name,
-          phone:$("mSupplierPhone").value.trim(),
-          address:$("mSupplierAddress").value.trim(),
-          createdAt:today()
+
+          id:
+            id("sup"),
+
+          name:
+            name,
+
+          phone:
+            $("mSupplierPhone")
+              .value
+              .trim(),
+
+          address:
+            $("mSupplierAddress")
+              .value
+              .trim(),
+
+          createdAt:
+            today()
+
         }
+
       );
 
     }
+
   );
 
 }
@@ -3082,68 +5552,162 @@ function newSupplier(){
 function newExpense(){
 
   openModal(
+
     "Add Expense",
+
     `
+
       <div class="form-grid">
 
         <div class="field">
-          <label>Date</label>
-          <input id="mExpenseDate" type="date" value="${today()}">
+
+          <label>
+            Date
+          </label>
+
+          <input
+            id="mExpenseDate"
+            type="date"
+            value="${today()}"
+          >
+
         </div>
 
+
         <div class="field">
-          <label>Category</label>
-          <input id="mExpenseCategory" placeholder="Transport / Salary / Rent">
+
+          <label>
+            Category
+          </label>
+
+          <input
+            id="mExpenseCategory"
+            placeholder="Transport / Salary / Rent"
+          >
+
         </div>
+
 
         <div class="field full">
-          <label>Description</label>
-          <input id="mExpenseDescription">
+
+          <label>
+            Description
+          </label>
+
+          <input
+            id="mExpenseDescription"
+          >
+
         </div>
 
+
         <div class="field">
-          <label>Amount</label>
-          <input id="mExpenseAmount" type="number" min="0">
+
+          <label>
+            Amount
+          </label>
+
+          <input
+            id="mExpenseAmount"
+            type="number"
+            min="0"
+          >
+
         </div>
 
       </div>
+
     `,
+
     async ()=>{
 
       const amount =
-        Number($("mExpenseAmount").value || 0);
+        Number(
+          $("mExpenseAmount")
+            .value ||
+          0
+        );
+
 
       if(amount <= 0){
-        throw new Error("Enter a valid expense amount");
+
+        throw new Error(
+          "Enter a valid expense amount"
+        );
+
       }
 
+
       const item = {
-        id:id("exp"),
-        date:$("mExpenseDate").value || today(),
-        category:$("mExpenseCategory").value.trim(),
-        description:$("mExpenseDescription").value.trim(),
-        amount:amount,
-        createdAt:today()
+
+        id:
+          id("exp"),
+
+        date:
+          $("mExpenseDate")
+            .value ||
+          today(),
+
+        category:
+          $("mExpenseCategory")
+            .value
+            .trim(),
+
+        description:
+          $("mExpenseDescription")
+            .value
+            .trim(),
+
+        amount:
+          amount,
+
+        createdAt:
+          today()
+
       };
 
-      await saveItem("expenses",item);
 
       await saveItem(
+        "expenses",
+        item
+      );
+
+
+      await saveItem(
+
         "cashTransactions",
+
         {
-          id:id("cash"),
-          date:item.date,
-          type:"Expense",
-          description:item.description ||
+
+          id:
+            id("cash"),
+
+          date:
+            item.date,
+
+          type:
+            "Expense",
+
+          description:
+            item.description ||
             item.category ||
             "Expense",
-          amount:amount,
-          direction:"out",
-          createdAt:today()
+
+          amount:
+            amount,
+
+          direction:
+            "out",
+
+          createdAt:
+            today()
+
         }
+
       );
 
     }
+
   );
 
 }
@@ -3156,206 +5720,442 @@ function newExpense(){
 function newSale(){
 
   const options =
-    data.products.map(p=>
-      `<option value="${esc(p.id)}">
-        ${esc(p.name)} — ${money(p.price)}
-      </option>`
-    ).join("");
+
+    data.products
+
+      .map(p=>`
+
+        <option
+          value="${esc(p.id)}"
+        >
+          ${esc(p.name)}
+          —
+          ${money(p.price)}
+        </option>
+
+      `)
+
+      .join("");
+
 
   const customerOptions =
-    `<option value="">Walk-in Customer</option>` +
-    data.customers.map(c=>
-      `<option value="${esc(c.id)}">
-        ${esc(c.name)}
-      </option>`
-    ).join("");
+
+    `<option value="">
+      Walk-in Customer
+    </option>` +
+
+    data.customers
+
+      .map(c=>`
+
+        <option
+          value="${esc(c.id)}"
+        >
+          ${esc(c.name)}
+        </option>
+
+      `)
+
+      .join("");
+
 
   openModal(
+
     "New Sale",
+
     `
+
       <div class="form-grid">
 
         <div class="field">
-          <label>Product</label>
-          <select id="mSaleProduct">
-            <option value="">Select product</option>
+
+          <label>
+            Product
+          </label>
+
+          <select
+            id="mSaleProduct"
+          >
+
+            <option value="">
+              Select product
+            </option>
+
             ${options}
+
           </select>
+
         </div>
 
-        <div class="field">
-          <label>Quantity</label>
-          <input id="mSaleQty" type="number" min="1" value="1">
-        </div>
 
         <div class="field">
-          <label>Customer</label>
-          <select id="mSaleCustomer">
+
+          <label>
+            Quantity
+          </label>
+
+          <input
+            id="mSaleQty"
+            type="number"
+            min="1"
+            value="1"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Customer
+          </label>
+
+          <select
+            id="mSaleCustomer"
+          >
+
             ${customerOptions}
+
           </select>
+
         </div>
 
-        <div class="field">
-          <label>Payment</label>
-          <select id="mSalePayment">
-            <option>Cash</option>
-            <option>Credit</option>
-            <option>KBZ Pay</option>
-            <option>Wave Pay</option>
-            <option>Bank</option>
-          </select>
-        </div>
 
         <div class="field">
-          <label>Paid Amount</label>
-          <input id="mSalePaid" type="number" min="0" value="0">
+
+          <label>
+            Payment
+          </label>
+
+          <select
+            id="mSalePayment"
+          >
+
+            <option>
+              Cash
+            </option>
+
+            <option>
+              Credit
+            </option>
+
+            <option>
+              KBZ Pay
+            </option>
+
+            <option>
+              Wave Pay
+            </option>
+
+            <option>
+              Bank
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Paid Amount
+          </label>
+
+          <input
+            id="mSalePaid"
+            type="number"
+            min="0"
+            value="0"
+          >
+
         </div>
 
       </div>
 
-      <div id="salePreview"
+
+      <div
+        id="salePreview"
         class="notice notice-info"
-        style="margin-top:15px">
+        style="margin-top:15px"
+      >
         Select a product
       </div>
+
     `,
+
     async ()=>{
 
       const productId =
-        $("mSaleProduct").value;
+        $("mSaleProduct")
+          .value;
+
 
       const product =
         data.products.find(
-          p=>p.id === productId
+
+          p=>
+            p.id ===
+            productId
+
         );
+
 
       if(!product){
-        throw new Error("Please select a product");
+
+        throw new Error(
+          "Please select a product"
+        );
+
       }
+
 
       const qty =
-        Number($("mSaleQty").value || 0);
+        Number(
+          $("mSaleQty")
+            .value ||
+          0
+        );
+
 
       if(qty <= 0){
-        throw new Error("Invalid quantity");
+
+        throw new Error(
+          "Invalid quantity"
+        );
+
       }
 
-      if(Number(product.stock || 0) < qty){
+
+      if(
+        Number(
+          product.stock || 0
+        ) < qty
+      ){
+
         throw new Error(
+
           "Not enough stock. Current stock: " +
           product.stock
+
         );
+
       }
 
+
       const customerId =
-        $("mSaleCustomer").value;
+        $("mSaleCustomer")
+          .value;
+
 
       const customer =
         data.customers.find(
-          c=>c.id === customerId
+
+          c=>
+            c.id ===
+            customerId
+
         );
 
+
       const total =
-        qty * Number(product.price || 0);
+
+        qty *
+        Number(
+          product.price ||
+          0
+        );
+
 
       let paid =
-        Number($("mSalePaid").value || 0);
+
+        Number(
+          $("mSalePaid")
+            .value ||
+          0
+        );
+
 
       const payment =
-        $("mSalePayment").value;
+        $("mSalePayment")
+          .value;
+
 
       if(payment !== "Credit"){
-        paid = total;
+
+        paid =
+          total;
+
       }
+
 
       if(paid > total){
-        paid = total;
+
+        paid =
+          total;
+
       }
 
+
       const balance =
-        total - paid;
+        total -
+        paid;
+
 
       const invoice =
+
         "INV-" +
-        new Date().getFullYear() +
+        new Date()
+          .getFullYear() +
         "-" +
-        Date.now().toString().slice(-6);
+        Date.now()
+          .toString()
+          .slice(-6);
+
 
       const sale = {
 
-        id:id("sale"),
+        id:
+          id("sale"),
 
-        invoice:invoice,
+        invoice:
+          invoice,
 
-        date:today(),
+        date:
+          today(),
 
-        time:nowTime(),
+        time:
+          nowTime(),
 
-        customerId:customerId || "",
+        customerId:
+          customerId ||
+          "",
 
         customerName:
           customer?.name ||
           "Walk-in Customer",
 
         items:[{
-          productId:product.id,
-          name:product.name,
-          qty:qty,
-          price:Number(product.price || 0),
-          costAtSale:Number(product.cost || 0),
-          discount:0
+
+          productId:
+            product.id,
+
+          name:
+            product.name,
+
+          qty:
+            qty,
+
+          price:
+            Number(
+              product.price ||
+              0
+            ),
+
+          costAtSale:
+            Number(
+              product.cost ||
+              0
+            ),
+
+          discount:
+            0
+
         }],
 
-        subtotal:total,
+        subtotal:
+          total,
 
-        discount:0,
+        discount:
+          0,
 
-        total:total,
+        total:
+          total,
 
-        payment:payment,
+        payment:
+          payment,
 
-        paid:paid,
+        paid:
+          paid,
 
-        balance:balance,
+        balance:
+          balance,
 
         status:
           balance > 0
             ? "Credit"
             : "Paid",
 
-        createdAt:today()
+        createdAt:
+          today()
 
       };
 
-      await saveItem("sales",sale);
 
       await saveItem(
-        "products",
-        {
-          ...product,
-          stock:
-            Number(product.stock || 0) - qty
-        }
+        "sales",
+        sale
       );
+
+
+      await saveItem(
+
+        "products",
+
+        {
+
+          ...product,
+
+          stock:
+
+            Number(
+              product.stock ||
+              0
+            ) -
+            qty
+
+        }
+
+      );
+
 
       if(paid > 0){
 
         await saveItem(
+
           "cashTransactions",
+
           {
-            id:id("cash"),
-            date:today(),
-            type:"Sale",
-            description:invoice,
-            amount:paid,
-            direction:"in",
-            createdAt:today()
+
+            id:
+              id("cash"),
+
+            date:
+              today(),
+
+            type:
+              "Sale",
+
+            description:
+              invoice,
+
+            amount:
+              paid,
+
+            direction:
+              "in",
+
+            createdAt:
+              today()
+
           }
+
         );
 
       }
 
     }
+
   );
 
 }
@@ -3368,198 +6168,426 @@ function newSale(){
 function newPurchase(){
 
   const options =
-    data.products.map(p=>
-      `<option value="${esc(p.id)}">
-        ${esc(p.name)}
-      </option>`
-    ).join("");
+
+    data.products
+
+      .map(p=>`
+
+        <option
+          value="${esc(p.id)}"
+        >
+          ${esc(p.name)}
+        </option>
+
+      `)
+
+      .join("");
+
 
   const supplierOptions =
-    data.suppliers.map(s=>
-      `<option value="${esc(s.id)}">
-        ${esc(s.name)}
-      </option>`
-    ).join("");
+
+    data.suppliers
+
+      .map(s=>`
+
+        <option
+          value="${esc(s.id)}"
+        >
+          ${esc(s.name)}
+        </option>
+
+      `)
+
+      .join("");
+
 
   openModal(
+
     "New Purchase",
+
     `
+
       <div class="form-grid">
 
         <div class="field">
-          <label>Product</label>
-          <select id="mPurchaseProduct">
-            <option value="">Select product</option>
+
+          <label>
+            Product
+          </label>
+
+          <select
+            id="mPurchaseProduct"
+          >
+
+            <option value="">
+              Select product
+            </option>
+
             ${options}
+
           </select>
+
         </div>
 
-        <div class="field">
-          <label>Quantity</label>
-          <input id="mPurchaseQty" type="number" min="1" value="1">
-        </div>
 
         <div class="field">
-          <label>Unit Cost</label>
-          <input id="mPurchaseCost" type="number" min="0" value="0">
+
+          <label>
+            Quantity
+          </label>
+
+          <input
+            id="mPurchaseQty"
+            type="number"
+            min="1"
+            value="1"
+          >
+
         </div>
 
+
         <div class="field">
-          <label>Supplier</label>
-          <select id="mPurchaseSupplier">
-            <option value="">Select supplier</option>
+
+          <label>
+            Unit Cost
+          </label>
+
+          <input
+            id="mPurchaseCost"
+            type="number"
+            min="0"
+            value="0"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Supplier
+          </label>
+
+          <select
+            id="mPurchaseSupplier"
+          >
+
+            <option value="">
+              Select supplier
+            </option>
+
             ${supplierOptions}
+
           </select>
+
         </div>
 
-        <div class="field">
-          <label>Payment</label>
-          <select id="mPurchasePayment">
-            <option>Cash</option>
-            <option>Credit</option>
-            <option>KBZ Pay</option>
-            <option>Wave Pay</option>
-            <option>Bank</option>
-          </select>
-        </div>
 
         <div class="field">
-          <label>Paid Amount</label>
-          <input id="mPurchasePaid" type="number" min="0" value="0">
+
+          <label>
+            Payment
+          </label>
+
+          <select
+            id="mPurchasePayment"
+          >
+
+            <option>
+              Cash
+            </option>
+
+            <option>
+              Credit
+            </option>
+
+            <option>
+              KBZ Pay
+            </option>
+
+            <option>
+              Wave Pay
+            </option>
+
+            <option>
+              Bank
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Paid Amount
+          </label>
+
+          <input
+            id="mPurchasePaid"
+            type="number"
+            min="0"
+            value="0"
+          >
+
         </div>
 
       </div>
+
     `,
+
     async ()=>{
 
       const productId =
-        $("mPurchaseProduct").value;
+        $("mPurchaseProduct")
+          .value;
+
 
       const product =
         data.products.find(
-          p=>p.id === productId
+
+          p=>
+            p.id ===
+            productId
+
         );
 
+
       if(!product){
-        throw new Error("Please select a product");
+
+        throw new Error(
+          "Please select a product"
+        );
+
       }
+
 
       const qty =
-        Number($("mPurchaseQty").value || 0);
+        Number(
+          $("mPurchaseQty")
+            .value ||
+          0
+        );
+
 
       const cost =
-        Number($("mPurchaseCost").value || 0);
+        Number(
+          $("mPurchaseCost")
+            .value ||
+          0
+        );
 
-      if(qty <= 0 || cost < 0){
-        throw new Error("Invalid purchase values");
+
+      if(
+        qty <= 0 ||
+        cost < 0
+      ){
+
+        throw new Error(
+          "Invalid purchase values"
+        );
+
       }
 
+
       const supplierId =
-        $("mPurchaseSupplier").value;
+        $("mPurchaseSupplier")
+          .value;
+
 
       const supplier =
         data.suppliers.find(
-          s=>s.id === supplierId
+
+          s=>
+            s.id ===
+            supplierId
+
         );
 
-      const total = qty * cost;
+
+      const total =
+        qty *
+        cost;
+
 
       let paid =
-        Number($("mPurchasePaid").value || 0);
+
+        Number(
+          $("mPurchasePaid")
+            .value ||
+          0
+        );
+
 
       const payment =
-        $("mPurchasePayment").value;
+        $("mPurchasePayment")
+          .value;
+
 
       if(payment !== "Credit"){
-        paid = total;
+
+        paid =
+          total;
+
       }
+
 
       if(paid > total){
-        paid = total;
+
+        paid =
+          total;
+
       }
 
+
       const balance =
-        total - paid;
+        total -
+        paid;
+
 
       const invoice =
+
         "PUR-" +
-        new Date().getFullYear() +
+        new Date()
+          .getFullYear() +
         "-" +
-        Date.now().toString().slice(-6);
+        Date.now()
+          .toString()
+          .slice(-6);
+
 
       const purchase = {
 
-        id:id("purchase"),
+        id:
+          id("purchase"),
 
-        invoice:invoice,
+        invoice:
+          invoice,
 
-        date:today(),
+        date:
+          today(),
 
-        time:nowTime(),
+        time:
+          nowTime(),
 
-        supplierId:supplierId || "",
+        supplierId:
+          supplierId ||
+          "",
 
         supplierName:
           supplier?.name ||
           "Supplier",
 
         items:[{
-          productId:product.id,
-          name:product.name,
-          qty:qty,
-          unitCost:cost
+
+          productId:
+            product.id,
+
+          name:
+            product.name,
+
+          qty:
+            qty,
+
+          unitCost:
+            cost
+
         }],
 
-        total:total,
+        total:
+          total,
 
-        payment:payment,
+        payment:
+          payment,
 
-        paid:paid,
+        paid:
+          paid,
 
-        balance:balance,
+        balance:
+          balance,
 
         status:
           balance > 0
             ? "Credit"
             : "Paid",
 
-        createdAt:today()
+        createdAt:
+          today()
 
       };
 
-      await saveItem(
-        "purchases",
-        purchase
-      );
 
       await saveItem(
-        "products",
-        {
-          ...product,
-          cost:cost,
-          stock:
-            Number(product.stock || 0) + qty
-        }
+
+        "purchases",
+
+        purchase
+
       );
+
+
+      await saveItem(
+
+        "products",
+
+        {
+
+          ...product,
+
+          cost:
+            cost,
+
+          stock:
+
+            Number(
+              product.stock ||
+              0
+            ) +
+            qty
+
+        }
+
+      );
+
 
       if(paid > 0){
 
         await saveItem(
+
           "cashTransactions",
+
           {
-            id:id("cash"),
-            date:today(),
-            type:"Purchase",
-            description:invoice,
-            amount:paid,
-            direction:"out",
-            createdAt:today()
+
+            id:
+              id("cash"),
+
+            date:
+              today(),
+
+            type:
+              "Purchase",
+
+            description:
+              invoice,
+
+            amount:
+              paid,
+
+            direction:
+              "out",
+
+            createdAt:
+              today()
+
           }
+
         );
 
       }
 
     }
+
   );
 
 }
@@ -3574,42 +6602,87 @@ async function saveSettings(){
   const settings = {
 
     businessName:
-      $("settingBusinessName").value.trim() ||
+
+      $("settingBusinessName")
+        .value
+        .trim() ||
+
       "My SME Business",
 
+
     phone:
-      $("settingPhone").value.trim(),
+
+      $("settingPhone")
+        .value
+        .trim(),
+
 
     address:
-      $("settingAddress").value.trim(),
+
+      $("settingAddress")
+        .value
+        .trim(),
+
 
     currency:
-      $("settingCurrency").value.trim() ||
+
+      $("settingCurrency")
+        .value
+        .trim() ||
+
       "MMK",
 
+
     invoiceFooter:
-      $("settingFooter").value.trim() ||
+
+      $("settingFooter")
+        .value
+        .trim() ||
+
       "Thank you for your business"
 
   };
 
+
   await updateDoc(
+
     businessRef(),
+
     {
-      name:settings.businessName,
-      phone:settings.phone,
-      address:settings.address,
-      currency:settings.currency,
-      invoiceFooter:settings.invoiceFooter,
-      updatedAt:serverTimestamp()
+
+      name:
+        settings.businessName,
+
+      phone:
+        settings.phone,
+
+      address:
+        settings.address,
+
+      currency:
+        settings.currency,
+
+      invoiceFooter:
+        settings.invoiceFooter,
+
+      updatedAt:
+        serverTimestamp()
+
     }
+
   );
 
-  data.settings = settings;
+
+  data.settings =
+    settings;
+
 
   renderAll();
 
-  showToast("Business settings saved");
+
+  showToast(
+    "Business settings saved"
+  );
 
 }
 
@@ -3620,15 +6693,28 @@ async function saveSettings(){
 
 function closeMobileMenu(){
 
-  $("sidebar").classList.remove("open");
-  $("mobileOverlay").classList.remove("show");
+  $("sidebar")
+    .classList
+    .remove("open");
+
+
+  $("mobileOverlay")
+    .classList
+    .remove("show");
 
 }
 
+
 function openMobileMenu(){
 
-  $("sidebar").classList.add("open");
-  $("mobileOverlay").classList.add("show");
+  $("sidebar")
+    .classList
+    .add("open");
+
+
+  $("mobileOverlay")
+    .classList
+    .add("show");
 
 }
 
@@ -3637,159 +6723,266 @@ function openMobileMenu(){
    EVENT LISTENERS
 ========================================================= */
 
-$("googleBtn").addEventListener(
-  "click",
-  loginWithGoogle
-);
+$("googleBtn")
+  .addEventListener(
+    "click",
+    loginWithGoogle
+  );
 
-$("loginBtn").addEventListener(
-  "click",
-  loginEmail
-);
 
-$("registerBtn").addEventListener(
-  "click",
-  registerEmail
-);
+$("loginBtn")
+  .addEventListener(
+    "click",
+    loginEmail
+  );
 
-$("forgotBtn").addEventListener(
-  "click",
-  forgotPassword
-);
 
-$("logoutBtn").addEventListener(
-  "click",
-  ()=>signOut(auth)
-);
+$("registerBtn")
+  .addEventListener(
+    "click",
+    registerEmail
+  );
 
-$("settingsLogout").addEventListener(
-  "click",
-  ()=>signOut(auth)
-);
 
-$("menuToggle").addEventListener(
-  "click",
-  openMobileMenu
-);
+$("forgotBtn")
+  .addEventListener(
+    "click",
+    forgotPassword
+  );
 
-$("mobileOverlay").addEventListener(
-  "click",
-  closeMobileMenu
-);
 
-$("modalClose").addEventListener(
-  "click",
-  closeModal
-);
+$("logoutBtn")
+  .addEventListener(
 
-$("modalCancel").addEventListener(
-  "click",
-  closeModal
-);
+    "click",
 
-$("newProductBtn").addEventListener(
-  "click",
-  newProduct
-);
+    async ()=>{
 
-$("newCustomerBtn").addEventListener(
-  "click",
-  newCustomer
-);
+      try{
 
-$("newSupplierBtn").addEventListener(
-  "click",
-  newSupplier
-);
+        await signOut(auth);
 
-$("newExpenseBtn").addEventListener(
-  "click",
-  newExpense
-);
+      }catch(error){
 
-$("newSaleBtn").addEventListener(
-  "click",
-  newSale
-);
+        console.error(
+          error
+        );
 
-$("newPurchaseBtn").addEventListener(
-  "click",
-  newPurchase
-);
+      }
 
-$("saveSettingsBtn").addEventListener(
-  "click",
-  saveSettings
-);
+    }
 
-$("premiumBtn").addEventListener(
-  "click",
-  ()=>{
-    alert(
-      "Premium Business features will be activated in the subscription module"
+  );
+
+
+$("settingsLogout")
+  .addEventListener(
+
+    "click",
+
+    async ()=>{
+
+      try{
+
+        await signOut(auth);
+
+      }catch(error){
+
+        console.error(
+          error
+        );
+
+      }
+
+    }
+
+  );
+
+
+$("menuToggle")
+  .addEventListener(
+    "click",
+    openMobileMenu
+  );
+
+
+$("mobileOverlay")
+  .addEventListener(
+    "click",
+    closeMobileMenu
+  );
+
+
+$("modalClose")
+  .addEventListener(
+    "click",
+    closeModal
+  );
+
+
+$("modalCancel")
+  .addEventListener(
+    "click",
+    closeModal
+  );
+
+
+$("newProductBtn")
+  .addEventListener(
+    "click",
+    newProduct
+  );
+
+
+$("newCustomerBtn")
+  .addEventListener(
+    "click",
+    newCustomer
+  );
+
+
+$("newSupplierBtn")
+  .addEventListener(
+    "click",
+    newSupplier
+  );
+
+
+$("newExpenseBtn")
+  .addEventListener(
+    "click",
+    newExpense
+  );
+
+
+$("newSaleBtn")
+  .addEventListener(
+    "click",
+    newSale
+  );
+
+
+$("newPurchaseBtn")
+  .addEventListener(
+    "click",
+    newPurchase
+  );
+
+
+$("saveSettingsBtn")
+  .addEventListener(
+    "click",
+    saveSettings
+  );
+
+
+$("premiumBtn")
+  .addEventListener(
+
+    "click",
+
+    ()=>{
+
+      alert(
+        "Premium Business features will be activated in the subscription module"
+      );
+
+    }
+
+  );
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+$("salesSearch")
+  .addEventListener(
+    "input",
+    renderSales
+  );
+
+
+$("purchaseSearch")
+  .addEventListener(
+    "input",
+    renderPurchases
+  );
+
+
+$("productSearch")
+  .addEventListener(
+    "input",
+    renderProducts
+  );
+
+
+$("customerSearch")
+  .addEventListener(
+    "input",
+    renderCustomers
+  );
+
+
+$("supplierSearch")
+  .addEventListener(
+    "input",
+    renderSuppliers
+  );
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+document
+  .querySelectorAll(
+    ".nav-btn[data-page]"
+  )
+  .forEach(btn=>{
+
+    btn.addEventListener(
+
+      "click",
+
+      ()=>{
+
+        openPage(
+          btn.dataset.page
+        );
+
+      }
+
     );
-  }
-);
+
+  });
 
 
-/* SEARCH */
+/* =========================================================
+   QUICK ACTIONS
+========================================================= */
 
-$("salesSearch").addEventListener(
-  "input",
-  renderSales
-);
+document
+  .querySelectorAll(
+    "[data-go]"
+  )
+  .forEach(btn=>{
 
-$("purchaseSearch").addEventListener(
-  "input",
-  renderPurchases
-);
+    btn.addEventListener(
 
-$("productSearch").addEventListener(
-  "input",
-  renderProducts
-);
+      "click",
 
-$("customerSearch").addEventListener(
-  "input",
-  renderCustomers
-);
+      ()=>{
 
-$("supplierSearch").addEventListener(
-  "input",
-  renderSuppliers
-);
+        openPage(
+          btn.dataset.go
+        );
 
+      }
 
-/* NAVIGATION */
+    );
 
-document.querySelectorAll(
-  ".nav-btn[data-page]"
-).forEach(btn=>{
-
-  btn.addEventListener(
-    "click",
-    ()=>{
-      openPage(btn.dataset.page);
-    }
-  );
-
-});
-
-
-/* QUICK ACTIONS */
-
-document.querySelectorAll(
-  "[data-go]"
-).forEach(btn=>{
-
-  btn.addEventListener(
-    "click",
-    ()=>{
-      openPage(btn.dataset.go);
-    }
-  );
-
-});
+  });
 
 
 /* =========================================================
@@ -3797,71 +6990,114 @@ document.querySelectorAll(
 ========================================================= */
 
 onAuthStateChanged(
+
   auth,
+
   async user=>{
+
+    setGoogleLoading(false);
+
 
     if(!user){
 
-      currentUser = null;
-      businessId = null;
+      currentUser =
+        null;
+
+      businessId =
+        null;
+
 
       $("authScreen")
-        .classList.remove("hidden");
+        .classList
+        .remove("hidden");
+
 
       $("app")
-        .classList.add("hidden");
+        .classList
+        .add("hidden");
+
 
       return;
 
     }
 
+
     try{
 
-      currentUser = user;
+      currentUser =
+        user;
 
-      await ensureBusiness(user);
+
+      await ensureBusiness(
+        user
+      );
+
 
       await loadBusiness();
 
+
       $("authScreen")
-        .classList.add("hidden");
+        .classList
+        .add("hidden");
+
 
       $("app")
-        .classList.remove("hidden");
+        .classList
+        .remove("hidden");
+
 
       renderAll();
+
 
     }catch(error){
 
       console.error(
+
         "ACCOUNT INITIALIZATION ERROR:",
+
         error
+
       );
 
+
       $("authScreen")
-        .classList.remove("hidden");
+        .classList
+        .remove("hidden");
+
 
       $("app")
-        .classList.add("hidden");
+        .classList
+        .add("hidden");
+
 
       $("authError").textContent =
+
         "Account setup failed\n\n" +
+
         "Code: " +
-        (error.code || "unknown") +
+
+        (error.code ||
+         "unknown") +
+
         "\n\nMessage: " +
-        (error.message || error);
+
+        (error.message ||
+         error);
+
 
       $("authError")
-        .classList.remove("hidden");
+        .classList
+        .remove("hidden");
 
     }
 
   }
+
 );
 
 
 /* =========================================================
-   INITIAL
+   INITIAL START
 ========================================================= */
 
 console.log(
@@ -3872,6 +7108,18 @@ console.log(
   "Firebase project:",
   firebaseConfig.projectId
 );
+
+console.log(
+  "Firebase API key loaded:",
+  firebaseConfig.apiKey
+    ? "YES"
+    : "NO"
+);
+
+
+/* Check Google redirect result */
+
+checkRedirectResult();
 
 </script>
 
