@@ -2401,7 +2401,347 @@ function enterDemo(){
 
 
 function startApp(){
+/* =========================
+   SME V3 FIREBASE AUTH
+========================= */
 
+let cloudState = {
+  ready: false,
+  user: null,
+  businessId: null,
+  syncing: false
+};
+
+
+/* ---------- Cloud Status ---------- */
+
+function updateCloudStatus(text){
+
+  document
+    .querySelectorAll("[data-cloud-status]")
+    .forEach(el=>{
+      el.textContent=text;
+    });
+
+}
+
+
+/* ---------- Business ID ---------- */
+
+function makeBusinessId(uid){
+
+  return "BIZ_"+String(uid||"")
+    .replace(/[^a-zA-Z0-9]/g,"")
+    .slice(0,40);
+
+}
+
+
+/* ---------- Firestore User ---------- */
+
+async function ensureCloudUser(user){
+
+  if(!firebaseDB || !user){
+    return null;
+  }
+
+  const userRef=
+    firebaseDB
+      .collection("users")
+      .doc(user.uid);
+
+  const snap=
+    await userRef.get();
+
+  let userData=snap.exists
+    ? snap.data()
+    : {};
+
+  const businessId=
+    userData.businessId||
+    makeBusinessId(user.uid);
+
+  userData={
+    ...userData,
+    uid:user.uid,
+    name:
+      userData.name||
+      user.displayName||
+      "Business Owner",
+    email:
+      user.email||
+      "",
+    businessId:businessId,
+    role:
+      userData.role||
+      "Owner",
+    updatedAt:
+      firebase.firestore.FieldValue.serverTimestamp()
+  };
+
+  if(!snap.exists){
+
+    userData.createdAt=
+      firebase.firestore.FieldValue.serverTimestamp();
+
+  }
+
+  await userRef.set(
+    userData,
+    {merge:true}
+  );
+
+  return userData;
+
+}
+
+
+/* ---------- Firestore Business ---------- */
+
+async function ensureCloudBusiness(
+  businessId,
+  user,
+  userData
+){
+
+  if(!firebaseDB || !businessId || !user){
+    return null;
+  }
+
+  const businessRef=
+    firebaseDB
+      .collection("businesses")
+      .doc(businessId);
+
+  const snap=
+    await businessRef.get();
+
+  const businessData={
+    name:
+      db.settings.businessName||
+      "My SME Business",
+
+    ownerUid:user.uid,
+
+    ownerName:
+      userData?.name||
+      user.displayName||
+      "Business Owner",
+
+    email:
+      user.email||
+      "",
+
+    phone:
+      db.settings.phone||
+      "",
+
+    address:
+      db.settings.address||
+      "",
+
+    currency:
+      db.settings.currency||
+      "MMK",
+
+    invoiceFooter:
+      db.settings.invoiceFooter||
+      "Thank you for your business",
+
+    updatedAt:
+      firebase.firestore.FieldValue.serverTimestamp()
+  };
+
+  if(!snap.exists){
+
+    businessData.createdAt=
+      firebase.firestore.FieldValue.serverTimestamp();
+
+  }
+
+  await businessRef.set(
+    businessData,
+    {merge:true}
+  );
+
+  return businessData;
+
+}
+
+
+/* ---------- Auth Success ---------- */
+
+async function afterCloudLogin(user){
+
+  if(!user){
+    return;
+  }
+
+  try{
+
+    updateCloudStatus(
+      "Connecting to Cloud..."
+    );
+
+    const userData=
+      await ensureCloudUser(user);
+
+    const businessId=
+      userData.businessId;
+
+    await ensureCloudBusiness(
+      businessId,
+      user,
+      userData
+    );
+
+    cloudState.ready=true;
+    cloudState.user=user;
+    cloudState.businessId=businessId;
+
+    db.currentUser={
+      id:user.uid,
+      name:
+        userData.name||
+        user.displayName||
+        "Business Owner",
+      username:
+        user.email||
+        user.uid,
+      role:
+        userData.role||
+        "Owner",
+      email:
+        user.email||
+        ""
+    };
+
+    save();
+
+    updateCloudStatus(
+      "☁️ Cloud Connected"
+    );
+
+    startApp();
+
+  }catch(error){
+
+    console.error(
+      "Cloud setup error:",
+      error
+    );
+
+    updateCloudStatus(
+      "Cloud connection failed"
+    );
+
+    alert(
+      "Cloud connection မအောင်မြင်ပါ\n\n"+
+      (error.message||"Unknown error")
+    );
+
+  }
+
+}
+
+
+/* ---------- Firebase Auth Listener ---------- */
+
+function listenFirebaseAuth(){
+
+  if(!firebaseAuth){
+    return;
+  }
+
+  firebaseAuth.onAuthStateChanged(
+    async function(user){
+
+      if(user){
+
+        await afterCloudLogin(user);
+
+      }else{
+
+        cloudState.ready=false;
+        cloudState.user=null;
+        cloudState.businessId=null;
+
+        updateCloudStatus(
+          "Cloud Login Ready"
+        );
+
+      }
+
+    }
+  );
+
+}
+
+
+/* ---------- Cloud Logout ---------- */
+
+async function logoutCloud(){
+
+  if(!firebaseAuth){
+    return;
+  }
+
+  try{
+
+    await firebaseAuth.signOut();
+
+    cloudState.ready=false;
+    cloudState.user=null;
+    cloudState.businessId=null;
+
+    updateCloudStatus(
+      "Cloud Login Ready"
+    );
+
+    $("loginScreen")
+      .classList.remove("hidden");
+
+    $("app")
+      .classList.add("hidden");
+
+  }catch(error){
+
+    console.error(
+      "Logout Error:",
+      error
+    );
+
+    alert(
+      "Logout မအောင်မြင်ပါ\n\n"+
+      (error.message||"Unknown error")
+    );
+
+  }
+
+}
+
+
+/* ---------- Start Firebase ---------- */
+
+function startSMEV3(){
+
+  if(
+    typeof firebase==="undefined" ||
+    !firebaseAuth ||
+    !firebaseDB
+  ){
+
+    console.warn(
+      "Firebase is not available"
+    );
+
+    return;
+
+  }
+
+  listenFirebaseAuth();
+
+}
   $("loginScreen").classList.add("hidden");
 
   $("app").classList.remove("hidden");
