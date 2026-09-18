@@ -2374,7 +2374,82 @@ function load(){
   }
 }
 
+async function loginWithGoogle(){
 
+  if(!firebaseAuth){
+    alert("Firebase is not ready");
+    return;
+  }
+
+  try{
+
+    const provider =
+      new firebase.auth.GoogleAuthProvider();
+
+    await firebaseAuth.signInWithPopup(provider);
+
+  }catch(error){
+
+    console.error(
+      "Google Login Error:",
+      error
+    );
+
+    alert(
+      "Google Login မအောင်မြင်ပါ\n\n" +
+      (error.message || "Unknown error")
+    );
+
+  }
+
+}
+
+
+async function loginWithEmail(){
+
+  if(!firebaseAuth){
+    alert("Firebase is not ready");
+    return;
+  }
+
+  const email =
+    $("cloudEmail")?.value.trim() || "";
+
+  const password =
+    $("cloudPassword")?.value || "";
+
+  if(!email){
+    alert("Email ဖြည့်ပါ");
+    return;
+  }
+
+  if(!password){
+    alert("Password ဖြည့်ပါ");
+    return;
+  }
+
+  try{
+
+    await firebaseAuth.signInWithEmailAndPassword(
+      email,
+      password
+    );
+
+  }catch(error){
+
+    console.error(
+      "Email Login Error:",
+      error
+    );
+
+    alert(
+      "Login မအောင်မြင်ပါ\n\n" +
+      (error.message || "Unknown error")
+    );
+
+  }
+
+}
 function enterDemo(){
 
   const business=$("loginBusiness").value.trim()||"My SME Business";
