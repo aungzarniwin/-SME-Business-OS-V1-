@@ -2324,8 +2324,11 @@ function escapeHTML(value){
 
 function save(){
   localStorage.setItem(KEY,JSON.stringify(db));
-}
 
+  if(typeof scheduleCloudSave === "function"){
+    scheduleCloudSave();
+  }
+}
 
 function load(){
 
