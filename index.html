@@ -2168,7 +2168,28 @@ textarea.form-control{
 
 
 <script>
+const firebaseConfig = {
+  apiKey: "AIzaSyBGq3JSPB86oZj2c20pinMjFQslp47Ogk",
+  authDomain: "sme-business-os.firebaseapp.com",
+  projectId: "sme-business-os",
+  storageBucket: "sme-business-os.firebasestorage.app",
+  messagingSenderId: "23491609372",
+  appId: "1:23491609372:web:89103f50dfed81cfdf70d9",
+  measurementId: "G-G62B6H4T5H"
+};
 
+let firebaseApp = null;
+let firebaseAuth = null;
+let firebaseDB = null;
+
+try {
+  firebaseApp = firebase.initializeApp(firebaseConfig);
+  firebaseAuth = firebase.auth();
+  firebaseDB = firebase.firestore();
+  console.log("Firebase initialized successfully");
+} catch(error) {
+  console.error("Firebase initialization error:", error);
+}
 const KEY="sme_business_os_v21";
 
 let db={
